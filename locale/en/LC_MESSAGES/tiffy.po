@@ -1,0 +1,97 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2018-11-20 19:39+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=cp1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: modules/gui\main_window.py:45
+msgid "RenderKnecht"
+msgstr ""
+
+#: modules/gui\main_window.py:46
+msgid "Keine Nachricht angegeben."
+msgstr "No message supplied,"
+
+#: modules/gui\main_window.py:65
+msgid "Datei"
+msgstr "File"
+
+#: modules/widgets\file_dialog.py:25
+msgid "Tif (*.tif);Tiff (*.tiff)"
+msgstr ""
+
+#: modules/widgets\file_dialog.py:25
+msgid "Tiff Datei auswaehlen"
+msgstr "Choose Tiff file"
+
+#: modules/widgets\file_dialog.py:26
+msgid "Excel Dateien (*.xlsx);"
+msgstr ""
+
+#: modules/widgets\file_dialog.py:26
+msgid "Excel Dateien *.xlxs auswaehlen"
+msgstr "Choose Excel *.xlxs file"
+
+#: modules/widgets\file_dialog.py:27
+msgid "Verzeichnis auswaehlen ..."
+msgstr "Choose directory ..."
+
+#: modules/widgets\menu_context.py:16
+msgid "Baum Kontextmenü"
+msgstr "Tree context menu"
+
+#: modules/widgets\menu_context.py:21
+msgid "Zeile einfügen"
+msgstr "Add row"
+
+#: modules/widgets\menu_context.py:25
+msgid "Zeile entfernen\tEntf"
+msgstr ""
+
+#: modules/widgets\menu_file.py:29
+msgid "Zuletzt geöffnet"
+msgstr "Recent files"
+
+#: modules/widgets\menu_file.py:35
+msgid "Öffnen"
+msgstr "Open"
+
+#: modules/widgets\menu_file.py:46
+msgid "Beenden"
+msgstr "Exit"
+
+#: modules/widgets\menu_file.py:79
+msgid "{0} in {1:.3}s geladen."
+msgstr "{0} loaded in {1:.3}s"
+
+#: modules/widgets\menu_file.py:90
+msgid "{} Elemente erfolgreich geladen."
+msgstr "{} elements successfully loaded"
+
+#: modules/widgets\menu_file.py:103
+msgid "Keine Einträge vorhanden"
+msgstr "No entrys found"
+
+#: modules/widgets\menu_language.py:19
+msgid "Sprache"
+msgstr "Language"
+
+#: modules/widgets\message_box.py:30
+msgid "Xml Datei oeffnen ..."
+msgstr "Open Xml file ..."
+
+#: modules/widgets\message_box.py:32
+msgid "Das gewaehlte Dokument konnte nicht geladen werden.<br><br>Es enthaelt entweder Keine oder keine unterstuetzten Daten."
+msgstr "The choosen document could not be loaded.<br><br>It contains unsupported or no data at all."
+
