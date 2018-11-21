@@ -4,9 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+openpyxl = "*"
 "pyqt5" = "*"
 ocrd-pyexiftool = "*"
-openpyxl = "*"
 
 [dev-packages]
 
