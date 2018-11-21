@@ -3,11 +3,15 @@ import logging
 
 from ui import gui_resource
 from multiprocessing import Queue
+from modules.gui.gui_utils import GuiExceptionHook
 from modules.log import init_logging, setup_log_queue_listener
 from modules.settings import TiffySettings
 from modules.gui.main_app import MainApp
 
 VERSION = '0.10'
+
+# Prepare exception handling
+sys.excepthook = GuiExceptionHook.exception_hook
 
 
 def initialize_log_listener():
@@ -60,7 +64,7 @@ def main():
     #
     #
     # ---- Start application ----
-    app = MainApp(VERSION)
+    app = MainApp(VERSION, GuiExceptionHook)
     result = app.exec_()
     #
     #

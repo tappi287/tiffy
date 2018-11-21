@@ -50,6 +50,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.progress_widget = ProgressOverlay(self.treeWidget)
 
         # --- App will bind itself to start btn ---
+        self.excel_data = None
         self.img_app = ImgMetaDataApp(self)
 
         self.system_tray = QtWidgets.QSystemTrayIcon(self.rk_icon, self)

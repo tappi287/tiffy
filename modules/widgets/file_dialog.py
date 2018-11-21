@@ -23,13 +23,13 @@ class FileDialog:
     """
     file_types = dict(
         tif=dict(title=_('Tiff Datei auswaehlen'), filter=_('Tif (*.tif; *.tiff)')),
-        xlsx=dict(title=_('Excel Dateien *.xlsx auswaehlen'), filter=_('Excel Dateien (*.xlsx);')),
+        xlsx=dict(title=_('Excel Dateien *.xlsx auswaehlen'), filter=_('Excel Dateien (*.xlsx)')),
         dir=dict(title=_('Verzeichnis auswaehlen ...'), filter=None)
         )
 
     @classmethod
     def open(cls,
-             parent=None, directory: Union[Path, str]=None, file_key: str= 'xml'
+             parent=None, directory: Union[Path, str]=None, file_key: str= 'xlsx'
              ) -> Union[str, None]:
         return cls.open_existing_file(parent, directory, file_key)
 
