@@ -94,6 +94,10 @@ class SetDirectoryPath(QtCore.QObject):
             if not file_type:
                 return
 
+        if self.mode == 'file2dir':
+            if Path(current_path).is_file():
+                current_path = Path(current_path).parent
+
         current_path = Path(current_path)
 
         self.set_path(current_path)

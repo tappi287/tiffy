@@ -1,9 +1,6 @@
-from pathlib import Path
-
 from PyQt5 import QtWidgets
 
-from modules import TiffySettings
-from modules.exiftool import Exif
+from modules.app_update_meta import ImgMetaDataWorker
 from modules.gui.gui_utils import SetupWidget
 from modules.gui.main_menu import MainWindowMenu
 from modules.gui.path_util import SetDirectoryPath
@@ -11,6 +8,7 @@ from modules.app_globals import Resource
 from modules.gui.icon_resource import IconRsc
 from modules.detect_language import get_translation
 from modules.log import init_logging
+from modules.widgets.progress_overlay import ProgressOverlay
 
 LOGGER = init_logging(__name__)
 
@@ -45,48 +43,30 @@ class MainWindow(QtWidgets.QMainWindow):
                        _('Tif (*.tif;*.tiff)')      # Filter
                        )
 
-        self.img_dir = SetDirectoryPath(app, self, mode='file', line_edit=self.imgLineEdit, tool_button=self.imgBtn,
-                                        dialog_args=dialog_args, reject_invalid_path_edits=True, parent=self)
-        self.img_dir.path_changed.connect(self.update_img_path)
+        self.img_dir = SetDirectoryPath(app, self, mode='file2dir', line_edit=self.imgLineEdit, tool_button=self.imgBtn,
+                                        dialog_args=dialog_args, reject_invalid_path_edits=False, parent=self)
 
-        self.startBtn.pressed.connect(self.read_meta)
+        self.exif_worker = ImgMetaDataWorker(self)
+        self.setup_exif_app()
 
-        # self.system_tray = QtWidgets.QSystemTrayIcon(self.rk_icon, self)
-        # self.system_tray.hide()
+        self.progress_widget = ProgressOverlay(self.treeWidget)
 
-    def read_meta(self):
-        if not self.img_dir.path:
-            return
+        self.system_tray = QtWidgets.QSystemTrayIcon(self.rk_icon, self)
+        self.system_tray.hide()
 
-        exif = Exif(self, self.img_dir.path)
-        exif.result.connect(self.meta_result)
-        exif.read_meta_data()
+    def setup_exif_app(self):
+        self.exif_worker.num_items.connect(self.setup_progress)
+        self.exif_worker.result.connect(self.update_progress)
+        self.exif_worker.finished.connect(self.finish_exif_worker)
 
-    def meta_result(self, metadata: dict):
-        LOGGER.debug('%s', metadata)
+        self.startBtn.pressed.connect(self.start_exif_worker)
 
-        for file in metadata:
-            self.add_list_widget_item(f'File: {file["SourceFile"]}')
+    def start_exif_worker(self):
+        self.exif_worker.start()
+        self.treeWidget.clear()
 
-            for tags in file.items():
-                key, value = tags
-                self.add_list_widget_item(f'{key}: {value}')
-
-    def add_list_widget_item(self, item_text):
-        item = QtWidgets.QListWidgetItem(item_text)
-        self.listWidget.addItem(item)
-
-    def update_img_path(self, img_path: Path):
-        if not img_path.is_file():
-            # Only update on chosen files
-            return
-
-        if img_path.exists():
-            TiffySettings.app['current_path'] = img_path.parent.as_posix()
-            TiffySettings.add_recent_file(img_path, img_path.suffix)
-
-        self.img_dir.set_path_text(img_path.parent)
-        self.img_dir.path = img_path.parent
+    def finish_exif_worker(self):
+        self.progress_widget.progress.hide()
 
     def show_tray_notification(self,
                                title=_('RenderKnecht'),
@@ -94,6 +74,18 @@ class MainWindow(QtWidgets.QMainWindow):
         self.system_tray.show()
         self.system_tray.showMessage(title, message, self.rk_icon)
         self.system_tray.hide()
+
+    def setup_progress(self, value):
+        self.progress_widget.progress.show()
+        self.progress_widget.progress.setValue(0)
+        self.progress_widget.progress.setMaximum(value)
+
+    def update_progress(self, file_name, msg):
+        v = self.progress_widget.progress.value() + 1
+        self.progress_widget.progress.setValue(v)
+
+        item = QtWidgets.QTreeWidgetItem((file_name, msg))
+        self.treeWidget.addTopLevelItem(item)
 
     def tree_with_focus(self):
         """ Return the current QTreeView in focus """

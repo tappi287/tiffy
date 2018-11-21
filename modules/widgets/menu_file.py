@@ -4,7 +4,7 @@ from pathlib import Path
 from PyQt5 import QtCore, QtWidgets
 
 from modules import TiffySettings
-from modules.excel import ReadExcel
+from modules.exiftool import ReadExcel, Exif
 from modules.gui.gui_utils import ConnectCall
 from modules.gui.icon_resource import IconRsc
 from modules.widgets.file_dialog import FileDialog
@@ -60,25 +60,27 @@ class FileMenu(QtCore.QObject):
             return
 
         excel_data = ReadExcel.get_data(Path(file).as_posix())
-        self.ui.listWidget.clear()
+        self.ui.treeWidget.clear()
 
         for data in excel_data.items():
             file, file_dict = data
-            item = f'{file}'
+            item_list = [f'{file}']
 
-            for tag in file_dict.items():
-                item += f' {tag[0]}: {tag[1]}'
+            for tag, value in zip(Exif.exiftool_tags, file_dict.values()):
+                if not value:
+                    value = ''
+                item_list.append(value)
 
-            self.ui.add_list_widget_item(item)
+            item = QtWidgets.QTreeWidgetItem(item_list)
+            self.ui.treeWidget.addTopLevelItem(item)
 
-        TiffySettings.add_recent_file(file, 'tif')
+        TiffySettings.add_recent_file(file, 'xlsx')
+
+        # Store excel data in Exif class
+        Exif.excel_data = excel_data
 
         # Output load info
         self.ui.statusBar().showMessage(_('{0} in {1:.3}s geladen.').format(Path(file).name, 0.0))
-
-    def item_transfer_finished(self, i):
-        LOGGER.debug('Item Transfer finished.')
-        self.ui.statusBar().showMessage(_('{} Elemente erfolgreich geladen.').format(i), 5000)
         self.enable_menus(True)
 
     def enable_menus(self, enabled: bool=True):
@@ -107,7 +109,7 @@ class FileMenu(QtCore.QObject):
             recent_action = QtWidgets.QAction(f'{file_name} - {file_type}', self.recent_menu)
             recent_action.setIcon(IconRsc.get_icon('preset_ref'))
 
-            if file_type == 'xml':
+            if file_type == 'xlsx':
                 call = ConnectCall(Path(file).as_posix(), target=self.open_excel, parent=recent_action)
                 recent_action.triggered.connect(call.call)
 
