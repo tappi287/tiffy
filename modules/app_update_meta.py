@@ -1,3 +1,4 @@
+from PyQt5.QtWidgets import QTreeWidgetItem
 from PyQt5.QtCore import QObject, QTimer, pyqtSignal
 
 from modules.widgets.message_box import GenericMsgBox
@@ -11,6 +12,41 @@ LOGGER = init_logging(__name__)
 lang = get_translation()
 lang.install()
 _ = lang.gettext
+
+
+class ImgMetaDataApp(QObject):
+    def __init__(self, ui):
+        super(ImgMetaDataApp, self).__init__(ui)
+        self.ui = ui
+
+        self.exif_worker = ImgMetaDataWorker(ui)
+        self.setup_exif_app()
+
+    def setup_exif_app(self):
+        self.exif_worker.num_items.connect(self.setup_progress)
+        self.exif_worker.result.connect(self.update_progress)
+        self.exif_worker.finished.connect(self.finish_exif_worker)
+
+        self.ui.startBtn.pressed.connect(self.start_exif_worker)
+
+    def setup_progress(self, value):
+        self.ui.progress_widget.progress.show()
+        self.ui.progress_widget.progress.setValue(0)
+        self.ui.progress_widget.progress.setMaximum(value)
+
+    def update_progress(self, file_name, msg):
+        v = self.ui.progress_widget.progress.value() + 1
+        self.ui.progress_widget.progress.setValue(v)
+
+        item = QTreeWidgetItem((file_name, msg))
+        self.ui.treeWidget.addTopLevelItem(item)
+
+    def start_exif_worker(self):
+        self.exif_worker.start()
+        self.ui.treeWidget.clear()
+
+    def finish_exif_worker(self):
+        self.ui.progress_widget.progress.hide()
 
 
 class ImgMetaDataWorker(QObject):

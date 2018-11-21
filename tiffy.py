@@ -17,7 +17,7 @@ def initialize_log_listener():
     try:
         log_queue = TiffySettings.log_queue
     except AttributeError:
-        LOGGER.fatal('Could not get logging queue from KnechtSettings!')
+        LOGGER.fatal('Could not get logging queue from TiffySettings!')
         log_queue = Queue(-1)
 
     # This will move all handlers from LOGGER to the queue listener

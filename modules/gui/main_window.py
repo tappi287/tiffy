@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 
-from modules.app_update_meta import ImgMetaDataWorker
+from modules.app_update_meta import ImgMetaDataApp
 from modules.gui.gui_utils import SetupWidget
 from modules.gui.main_menu import MainWindowMenu
 from modules.gui.path_util import SetDirectoryPath
@@ -46,27 +46,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.img_dir = SetDirectoryPath(app, self, mode='file2dir', line_edit=self.imgLineEdit, tool_button=self.imgBtn,
                                         dialog_args=dialog_args, reject_invalid_path_edits=False, parent=self)
 
-        self.exif_worker = ImgMetaDataWorker(self)
-        self.setup_exif_app()
-
+        # ---- Setup overlay progress widget ----
         self.progress_widget = ProgressOverlay(self.treeWidget)
+
+        # --- App will bind itself to start btn ---
+        self.img_app = ImgMetaDataApp(self)
 
         self.system_tray = QtWidgets.QSystemTrayIcon(self.rk_icon, self)
         self.system_tray.hide()
-
-    def setup_exif_app(self):
-        self.exif_worker.num_items.connect(self.setup_progress)
-        self.exif_worker.result.connect(self.update_progress)
-        self.exif_worker.finished.connect(self.finish_exif_worker)
-
-        self.startBtn.pressed.connect(self.start_exif_worker)
-
-    def start_exif_worker(self):
-        self.exif_worker.start()
-        self.treeWidget.clear()
-
-    def finish_exif_worker(self):
-        self.progress_widget.progress.hide()
 
     def show_tray_notification(self,
                                title=_('RenderKnecht'),
@@ -74,18 +61,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.system_tray.show()
         self.system_tray.showMessage(title, message, self.rk_icon)
         self.system_tray.hide()
-
-    def setup_progress(self, value):
-        self.progress_widget.progress.show()
-        self.progress_widget.progress.setValue(0)
-        self.progress_widget.progress.setMaximum(value)
-
-    def update_progress(self, file_name, msg):
-        v = self.progress_widget.progress.value() + 1
-        self.progress_widget.progress.setValue(v)
-
-        item = QtWidgets.QTreeWidgetItem((file_name, msg))
-        self.treeWidget.addTopLevelItem(item)
 
     def tree_with_focus(self):
         """ Return the current QTreeView in focus """
