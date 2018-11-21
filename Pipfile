@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 "pyqt5" = "*"
 ocrd-pyexiftool = "*"
+openpyxl = "*"
 
 [dev-packages]
 

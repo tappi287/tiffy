@@ -23,7 +23,7 @@ class FileDialog:
     """
     file_types = dict(
         tif=dict(title=_('Tiff Datei auswaehlen'), filter=_('Tif (*.tif; *.tiff)')),
-        xlxs=dict(title=_('Excel Dateien *.xlxs auswaehlen'), filter=_('Excel Dateien (*.xlsx);')),
+        xlsx=dict(title=_('Excel Dateien *.xlsx auswaehlen'), filter=_('Excel Dateien (*.xlsx);')),
         dir=dict(title=_('Verzeichnis auswaehlen ...'), filter=None)
         )
 

@@ -13,6 +13,7 @@ class Exif(QtCore.QObject):
     iptc_keys = ['IPTC:ObjectName', 'IPTC:By-line', 'IPTC:Caption-Abstract', 'IPTC:Keywords', 'IPTC:CopyrightNotice']
     exif_keys = [None, 'EXIF:Artist', 'EXIF:ImageDescription', None, 'EXIF:Copyright']
 
+    spreadsheet_file_column = 'B'
     spreadsheet_map = {
         'title': 'K',
         'author': None,

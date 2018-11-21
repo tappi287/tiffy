@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c163577f176d26d0bb9616709c57d9bc73fb1049a3a064e459adeb57f01ace4c"
+            "sha256": "83cfc4bfeb8ddd34785473f8efc9f91e24f4c40c7748aa99502ef9925697caaa"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,19 @@
         ]
     },
     "default": {
+        "et-xmlfile": {
+            "hashes": [
+                "sha256:614d9722d572f6246302c4491846d2c393c199cfa4edc9af593437691683335b"
+            ],
+            "version": "==1.0.1"
+        },
+        "jdcal": {
+            "hashes": [
+                "sha256:948fb8d079e63b4be7a69dd5f0cd618a0a57e80753de8248fd786a8a20658a07",
+                "sha256:ea0a5067c5f0f50ad4c7bdc80abad3d976604f6fb026b0b3a17a9d84bb9046c9"
+            ],
+            "version": "==1.4"
+        },
         "ocrd-pyexiftool": {
             "hashes": [
                 "sha256:13d7aeabd765256e7640e4198cc742538a9c458b34aca6644b356c6e908c922a",
@@ -24,6 +37,13 @@
             ],
             "index": "pypi",
             "version": "==0.2.0"
+        },
+        "openpyxl": {
+            "hashes": [
+                "sha256:41eb21a5620343d715b38081536c4ed3c37249afb72e569fd2af93852ed4ddde"
+            ],
+            "index": "pypi",
+            "version": "==2.5.10"
         },
         "pyqt5": {
             "hashes": [

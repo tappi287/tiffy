@@ -4,6 +4,7 @@ from pathlib import Path
 from PyQt5 import QtCore, QtWidgets
 
 from modules import TiffySettings
+from modules.excel import ReadExcel
 from modules.gui.gui_utils import ConnectCall
 from modules.gui.icon_resource import IconRsc
 from modules.widgets.file_dialog import FileDialog
@@ -57,6 +58,18 @@ class FileMenu(QtCore.QObject):
             LOGGER.info('Open Xlsx File dialog canceled.')
             self.enable_menus(True)
             return
+
+        excel_data = ReadExcel.get_data(Path(file).as_posix())
+        self.ui.listWidget.clear()
+
+        for data in excel_data.items():
+            file, file_dict = data
+            item = f'{file}'
+
+            for tag in file_dict.items():
+                item += f' {tag[0]}: {tag[1]}'
+
+            self.ui.add_list_widget_item(item)
 
         TiffySettings.add_recent_file(file, 'tif')
 
