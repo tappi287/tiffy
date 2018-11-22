@@ -95,7 +95,6 @@ class SettingsPage(QObject):
             if column:
                 input_field.setText(column)
             else:
-                input_field.setText('')
                 box.setValue(0)
 
     def translations(self):
