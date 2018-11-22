@@ -29,6 +29,8 @@ class SettingsPage(QObject):
         self.boxes = [self.ui.fileBox, self.ui.titleBox, self.ui.authorBox,
                       self.ui.descBox, self.ui.keyBox, self.ui.rightBox]
 
+        self.ui.threadCountSlider.sliderReleased.connect(self.update_thread_count)
+
         self.column_keys = list(Exif.spreadsheet_map.keys())
         self.default_columns = list(Exif.spreadsheet_map.values())
         self.translations()
@@ -87,6 +89,9 @@ class SettingsPage(QObject):
         column_key = self.column_keys[idx]
         Exif.spreadsheet_map[column_key] = column
         LOGGER.debug('Updated spreadsheet mapping:\n%s', Exif.spreadsheet_map)
+
+    def update_thread_count(self):
+        Exif.max_threads = self.ui.threadCountSlider.value()
 
     def restore_defaults(self):
         for idx, (input_field, box) in enumerate(zip(self.inputs, self.boxes)):

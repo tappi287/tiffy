@@ -140,6 +140,6 @@ class SetDirectoryPath(QtCore.QObject):
             # Pasted or typed Path does not exist
             if self.reject_invalid_path_edits:
                 self.line_edit.clear()
-                self.line_edit.setPlaceholderText(_("'< Gültigen Pfad eingeben >'"))
+                self.line_edit.setPlaceholderText(_("< Gültigen Pfad eingeben >"))
 
             self.invalid_path_entered.emit()

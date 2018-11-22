@@ -16,31 +16,25 @@ class InfoMenu(QMenu):
     def __init__(self, ui):
         super(InfoMenu, self).__init__('?', ui)
         self.ui = ui
-        self.about_title = _("Über Tiffy v{} GPLv3").format(self.ui.app.version)
+        self.software_title = 'Tiffy v{}'.format(self.ui.app.version)
+        self.about_title = _("Über {} GPL v3").format(self.software_title)
 
         icon = IconRsc.get_icon('help')
         info = QAction(icon, self.about_title, self)
         info.triggered.connect(self.show_about_box)
         self.addAction(info)
 
-    def show_about_box(self):
-        txt = _('{0}<br>Copyright (C) 2017 Stefan Tapper, All rights reserved.<br><br>'
-                'Visit the <a href="https://github.com/tappi287/tiffy">source code@github</a> of this software!<br><br>'
-                'Tiffy is free software: you can redistribute it and/or modify '
-                'it under the terms of the GNU General Public License as published by '
-                'the Free Software Foundation, either version 3 of the License, or '
-                '(at your option) any later version.<br><br>'
-                'Tiffy is distributed in the hope that it will be useful, '
-                'but WITHOUT ANY WARRANTY; without even the implied warranty of '
-                'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the '
-                'GNU General Public License for more details.<br><br>'
-                'You should have received a copy of the GNU General Public License '
-                'along with Tiffy. If not, see '
-                '<a href="http://www.gnu.org/licenses/">here</a>.').format(self.about_title)
+        qt_info = QAction(_('Über Qt'), self)
+        qt_info.triggered.connect(self.show_about_qt)
+        self.addAction(qt_info)
 
-        txt = _('{0}<br>Copyright (C) 2018 Stefan Tapper<br><br>'
+    def show_about_qt(self):
+        QMessageBox.aboutQt(self.ui, self.about_title)
+
+    def show_about_box(self):
+        txt = _('<i>{0} licensed under GPL v3</i><br><i>Copyright © 2018 Stefan Tapper</i><br><br>'
                 'Besuche den <a href="https://github.com/tappi287/tiffy">Quelltext@github</a> dieser Software!<br><br>'
-                'Dieses Programm ist Freie Software: Sie können es unter den Bedingungen '
+                'Tiffy ist <b>Freie Software</b>: Sie können es unter den Bedingungen '
                 'der GNU General Public License, wie von der Free Software Foundation, '
                 'Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren '
                 'veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>'
@@ -48,8 +42,8 @@ class InfoMenu(QMenu):
                 'OHNE JEDE GEWÄHR,; sogar ohne die implizite '
                 'Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. '
                 'Siehe die GNU General Public License für weitere Einzelheiten.<br><br>'
-                'Sie sollten eine Kopie der GNU General Public License zusammen mit diesem'
+                'Sie sollten eine Kopie der GNU General Public License zusammen mit diesem '
                 'Programm erhalten haben. Wenn nicht, siehe '
-                '<a href="http://www.gnu.org/licenses/">hier</a>.').format(self.about_title)
+                '<a href="http://www.gnu.org/licenses/">hier</a>.').format(self.software_title)
 
         about_box = QMessageBox.about(self.ui, self.about_title, txt)

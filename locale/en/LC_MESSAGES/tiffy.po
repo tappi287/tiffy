@@ -4,44 +4,93 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-11-20 19:39+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-11-22 19:04+0100\n"
+"PO-Revision-Date: 2018-11-22 19:07+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=cp1252\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"X-Generator: Poedit 2.2\n"
 
+#: modules/gui\main_app.py:37
+msgid "Ausnahme aufgetreten: <br><br>"
+msgstr "Unhandled exception: <br><br>"
 
-#: modules/gui\main_window.py:45
-msgid "RenderKnecht"
-msgstr ""
+#: modules/gui\main_app.py:38
+msgid "Schwerwiegender Fehler"
+msgstr "Serious error"
 
-#: modules/gui\main_window.py:46
-msgid "Keine Nachricht angegeben."
-msgstr "No message supplied,"
-
-#: modules/gui\main_window.py:65
-msgid "Datei"
-msgstr "File"
-
-#: modules/widgets\file_dialog.py:25
-msgid "Tif (*.tif);Tiff (*.tiff)"
-msgstr ""
-
-#: modules/widgets\file_dialog.py:25
+#: modules/gui\main_window.py:49 modules/widgets\file_dialog.py:25
 msgid "Tiff Datei auswaehlen"
 msgstr "Choose Tiff file"
 
-#: modules/widgets\file_dialog.py:26
-msgid "Excel Dateien (*.xlsx);"
+#: modules/gui\main_window.py:50
+msgid "Tif (*.tif;*.tiff)"
+msgstr ""
+
+#: modules/gui\main_window.py:64
+msgid "RenderKnecht"
+msgstr ""
+
+#: modules/gui\main_window.py:65
+msgid "Keine Nachricht angegeben."
+msgstr "No message supplied."
+
+#: modules/gui\main_window.py:84
+msgid "Datei"
+msgstr "File"
+
+#: modules/gui\main_window.py:86 modules/widgets\page_settings.py:106
+msgid "Datei;Titel;Author;Beschreibung;Stichwörter;Copyright"
+msgstr "File;Title;Author;Description;Keywords;Copyright"
+
+#: modules/gui\main_window.py:90
+msgid "Datei;Ergebnis"
+msgstr "File;Result"
+
+#: modules/gui\main_window.py:94
+msgid "Excel Daten"
+msgstr "Excel data"
+
+#: modules/gui\main_window.py:95
+msgid "Bild Ergebnis"
+msgstr "Image Result"
+
+#: modules/gui\main_window.py:96
+msgid "Einstellungen"
+msgstr "Settings"
+
+#: modules/gui\main_window.py:98
+msgid "Exiftool starten"
+msgstr "Start Exiftool"
+
+#: modules/gui\main_window.py:99
+msgid "Pfad zu Bilddaten angeben oder Datei in das Fenster ziehen."
+msgstr "Choose path to Image files or drop file into window."
+
+#: modules/gui\path_util.py:78
+msgid "Verzeichnis auswählen"
+msgstr "Choose directory"
+
+#: modules/gui\path_util.py:143
+msgid "< Gültigen Pfad eingeben >"
+msgstr "Enter a valid path"
+
+#: modules/widgets\file_dialog.py:25
+msgid "Tif (*.tif; *.tiff)"
 msgstr ""
 
 #: modules/widgets\file_dialog.py:26
-msgid "Excel Dateien *.xlxs auswaehlen"
-msgstr "Choose Excel *.xlxs file"
+msgid "Excel Dateien (*.xlsx)"
+msgstr "Excel Files (*.xlsx)"
+
+#: modules/widgets\file_dialog.py:26
+msgid "Excel Dateien *.xlsx auswaehlen"
+msgstr "Choose *.xlsx Excel files"
 
 #: modules/widgets\file_dialog.py:27
 msgid "Verzeichnis auswaehlen ..."
@@ -57,31 +106,35 @@ msgstr "Add row"
 
 #: modules/widgets\menu_context.py:25
 msgid "Zeile entfernen\tEntf"
-msgstr ""
+msgstr "Remove row\tDel"
 
-#: modules/widgets\menu_file.py:29
+#: modules/widgets\menu_file.py:30
 msgid "Zuletzt geöffnet"
 msgstr "Recent files"
 
-#: modules/widgets\menu_file.py:35
-msgid "Öffnen"
-msgstr "Open"
+#: modules/widgets\menu_file.py:42
+msgid "Excel Tabelle öffnen ..."
+msgstr "Open Excel file ..."
 
-#: modules/widgets\menu_file.py:46
+#: modules/widgets\menu_file.py:53
 msgid "Beenden"
 msgstr "Exit"
 
-#: modules/widgets\menu_file.py:79
-msgid "{0} in {1:.3}s geladen."
-msgstr "{0} loaded in {1:.3}s"
-
-#: modules/widgets\menu_file.py:90
-msgid "{} Elemente erfolgreich geladen."
-msgstr "{} elements successfully loaded"
-
-#: modules/widgets\menu_file.py:103
+#: modules/widgets\menu_file.py:67
 msgid "Keine Einträge vorhanden"
 msgstr "No entrys found"
+
+#: modules/widgets\menu_info.py:20
+msgid "Über {} GPL v3"
+msgstr "About {} GPL v3"
+
+#: modules/widgets\menu_info.py:27
+msgid "Über Qt"
+msgstr "About Qt"
+
+#: modules/widgets\menu_info.py:35
+msgid "<i>{0} licensed under GPL v3</i><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Besuche den <a href=\"https://github.com/tappi287/tiffy\">Quelltext@github</a> dieser Software!<br><br>Tiffy ist <b>Freie Software</b>: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation, Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR,; sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten.<br><br>Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe <a href=\"http://www.gnu.org/licenses/\">hier</a>."
+msgstr "<i>{0} licensed under GPL v3</i><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Visit the <a href=\\https://github.com/tappi287/tiffy\\>source code@github</a> of this software!<br><br>Tiffy is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br><br>Tiffy is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with Tiffy. If not, see <a href=\\http://www.gnu.org/licenses/\\>here</a>."
 
 #: modules/widgets\menu_language.py:19
 msgid "Sprache"
@@ -95,3 +148,50 @@ msgstr "Open Xml file ..."
 msgid "Das gewaehlte Dokument konnte nicht geladen werden.<br><br>Es enthaelt entweder Keine oder keine unterstuetzten Daten."
 msgstr "The choosen document could not be loaded.<br><br>It contains unsupported or no data at all."
 
+#: modules/widgets\page_settings.py:107
+msgid "Enthält den korrespondierenden Dateinamen;Enthält den korrespondierenden Titel;Enthält den korrespondierenden Author;Enthält die korrespondierende Beschreibung;Enthält die korrespondierenden Stichwörter;Enthält den korrespondierenden Rechtshinweis"
+msgstr "Column containing corresponding file name;Column containing corresponding title;Column containing corresponding Author;Column containing corresponding description;Column containing corresponding keywords;Column containing corresponding copyright notice"
+
+#: modules/widgets\page_settings.py:124
+msgid "Excel Tabellenzuordnungen"
+msgstr "Excel Column Assignments"
+
+#: modules/widgets\page_settings.py:125
+msgid "Legt fest welche Spalte der Tabelle für die entsprechenden Metadaten verwendet wird. Leere Felder und Spalten mit Nummer 0 werden nicht berücksichtigt."
+msgstr "Assigns the selected columns with the corresponding meta data. Empty fields and column with number 0 are ignored."
+
+#: modules/widgets\page_settings.py:128
+msgid "Anwendung"
+msgstr "Application"
+
+#: modules/widgets\page_settings.py:129
+msgid "Erweiterte Anwendungseinstellungen. Unerfahrenen Benutzern wird empfohlen diese Einstellungen nicht zu ändern."
+msgstr "Advanced application settings. Inexperienced users are adviced not to change these settings."
+
+#: modules/widgets\page_settings.py:131
+msgid "Standard wiederherstellen"
+msgstr "Restore defaults"
+
+#: modules\app_read_excel.py:65
+msgid "[Keine Daten]"
+msgstr "[No Data]"
+
+#: modules\app_read_excel.py:76
+msgid "Excel Tabelle in {0:.3}s geladen."
+msgstr "Excel Spreadsheet loaded in {0:.3}s"
+
+#: modules\app_update_meta.py:64
+msgid "Bildprozessor"
+msgstr "Image processor"
+
+#: modules\app_update_meta.py:121
+msgid "Kein Pfad zu Bilddaten angegeben."
+msgstr "No path to image files given."
+
+#: modules\app_update_meta.py:127
+msgid "Keine Excel Daten geladen."
+msgstr "No Excel data loaded."
+
+#: modules\app_update_meta.py:163
+msgid "ACHTUNG! Bilddatei -NICHT- in Excel gefunden!"
+msgstr "ATTENTION! Image file -not- found in Excel!"

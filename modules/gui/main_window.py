@@ -96,3 +96,4 @@ class MainWindow(QtWidgets.QMainWindow):
         self.tabWidget.setTabText(2, _("Einstellungen"))
 
         self.startBtn.setText(_("Exiftool starten"))
+        self.imgLineEdit.setText(_('Pfad zu Bilddaten angeben oder Datei in das Fenster ziehen.'))

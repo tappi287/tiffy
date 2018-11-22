@@ -39,7 +39,7 @@ class FileMenu(QObject):
 
     def setup_file_menu(self):
         # ---- Open ----
-        open_xlsx_action = QtWidgets.QAction(IconRsc.get_icon('folder'), _('Excel Tabelle öffnen'), self.menu)
+        open_xlsx_action = QtWidgets.QAction(IconRsc.get_icon('folder'), _('Excel Tabelle öffnen ...'), self.menu)
         open_xlsx_action.triggered.connect(self.open_xlsx.open_excel)
         self.menu.addAction(open_xlsx_action)
 

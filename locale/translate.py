@@ -26,9 +26,9 @@ print(current_modules_dir)
 
 class CreatePo:
     def __init__(self):
-        self.pot_file = f'locale/{APP_NAME}.pot'
-        self.en_file = f'locale/en/LC_MESSAGES/{APP_NAME}.po'
-        self.out_file = f'locale/en/LC_MESSAGES/{APP_NAME}_auto.po'
+        self.pot_file = os.path.join(current_modules_dir, f'locale/{APP_NAME}.pot')
+        self.en_file = os.path.join(current_modules_dir, f'locale/en/LC_MESSAGES/{APP_NAME}.po')
+        self.out_file = os.path.join(current_modules_dir, f'locale/en/LC_MESSAGES/{APP_NAME}_auto.po')
 
         if not os.path.exists(self.pot_file):
             print('Pot template file not found.')
