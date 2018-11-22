@@ -62,7 +62,7 @@ class OpenExcel(QObject):
 
             for tag, value in zip(Exif.exiftool_tags, file_dict.values()):
                 if not value:
-                    value = ''
+                    value = _('[Keine Daten]')
                 item_list.append(value)
 
             item = QTreeWidgetItem(item_list)

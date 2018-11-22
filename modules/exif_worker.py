@@ -1,5 +1,5 @@
 import exiftool
-
+from collections import OrderedDict
 from pathlib import Path
 from PyQt5 import QtCore, QtWidgets
 
@@ -26,14 +26,9 @@ class Exif(QtCore.QObject):
     # Actual Exiftool tag names
     exiftool_tags = ['-Title', '-Creator', '-Description', '-Subject', '-Rights']
 
-    spreadsheet_map = {
-        'file': 'B',
-        'title': 'K',
-        'author': None,
-        'description': None,
-        'keywords': 'B',
-        'copyright': 'EG'
-        }
+    spreadsheet_map = OrderedDict()
+    spreadsheet_map.update({
+        'file': 'B', 'title': 'K', 'author': None, 'description': None, 'keywords': 'B', 'copyright': 'EG'})
 
     # Maximum number of concurrent exiftool instances (running in QThreadPool)
     # Note that performance is mainly influenced by network/drive read and write speed
