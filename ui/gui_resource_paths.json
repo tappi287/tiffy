@@ -73,6 +73,8 @@
 		"copy_animation": ":/anim/copy_animation.gif",
 		"coffee_animation": ":/anim/coffee_animation.gif",
 		"link_animation": ":/anim/link_animation.gif",
-		"Icon": ":/main/Icon.png"
+		"Icon": ":/main/Icon.png",
+		"drop_anim": ":/anim/drop_anim.gif",
+		"check_anim": ":/anim/check_anim.gif"
 	}
 }

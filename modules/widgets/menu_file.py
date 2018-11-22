@@ -113,10 +113,15 @@ class FileMenu(QObject):
             # Open excel file
             LOGGER.debug('File dropped: %s', file_url)
             self.open_xlsx.open_excel(Path(file_url).as_posix())
+            self.ui.tabWidget.setCurrentIndex(0)
             return True
         elif file_suffix in Exif.file_types:
             # Update images path
             path = Path(file_url).parent
             self.ui.img_dir.set_path(path)
+
+            self.ui.tabWidget.setCurrentIndex(0)
+            self.ui.app.play_checkmark()
+            return True
 
         return False

@@ -136,6 +136,7 @@ class ReadExcel(QObject):
                 if key == 'file':
                     file_name = value
                     excel_data[file_name] = dict()
+                    continue
 
                 if not file_name:
                     continue
