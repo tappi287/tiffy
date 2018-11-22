@@ -1,9 +1,11 @@
 import time
 from pathlib import Path
 
-from PyQt5 import QtCore, QtWidgets
+from PyQt5.QtCore import QEvent, Qt, QObject
+from PyQt5 import QtWidgets
 
 from modules import TiffySettings
+from modules.exif_worker import Exif
 from modules.app_read_excel import OpenExcel
 from modules.gui.gui_utils import ConnectCall
 from modules.gui.icon_resource import IconRsc
@@ -18,7 +20,7 @@ lang.install()
 _ = lang.gettext
 
 
-class FileMenu(QtCore.QObject):
+class FileMenu(QObject):
 
     def __init__(self, ui: QtWidgets.QMainWindow, menu: QtWidgets.QMenu=None):
         super(FileMenu, self).__init__(parent=ui)
@@ -28,6 +30,10 @@ class FileMenu(QtCore.QObject):
         self.recent_menu = QtWidgets.QMenu(_('Zuletzt geöffnet'), self.menu)
 
         self.open_xlsx = OpenExcel(ui, self)
+
+        # --- Install file drop on treeWidget ---
+        self.ui.setAttribute(Qt.WA_AcceptDrops)
+        self.ui.installEventFilter(self)
 
         self.setup_file_menu()
 
@@ -79,3 +85,38 @@ class FileMenu(QtCore.QObject):
                 recent_action.triggered.connect(call.call)
 
             self.recent_menu.addAction(recent_action)
+
+    def eventFilter(self, obj, event):
+        if event.type() == QEvent.DragEnter:
+            event.setDropAction(Qt.CopyAction)
+            event.accept()
+            return True
+
+        if event.type() == QEvent.Drop:
+            mime = event.mimeData()
+            if self.file_drop(mime):
+                return True
+
+        return False
+
+    def file_drop(self, mime):
+        if not mime.hasUrls():
+            return False
+
+        if not mime.urls()[0].isLocalFile():
+            return False
+
+        file_url = mime.urls()[0].toLocalFile()
+        file_suffix = Path(file_url).suffix.casefold()
+
+        if file_suffix == '.xlsx':
+            # Open excel file
+            LOGGER.debug('File dropped: %s', file_url)
+            self.open_xlsx.open_excel(Path(file_url).as_posix())
+            return True
+        elif file_suffix in Exif.file_types:
+            # Update images path
+            path = Path(file_url).parent
+            self.ui.img_dir.set_path(path)
+
+        return False

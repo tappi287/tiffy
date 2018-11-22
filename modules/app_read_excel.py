@@ -23,6 +23,7 @@ class OpenExcel(QObject):
     def __init__(self, ui, menu):
         super(OpenExcel, self).__init__(ui)
         self.ui, self.menu = ui, menu
+        self.progress = ui.progress_widget.progress
         self.thread = None
         self.load_timer = time()
 
@@ -45,7 +46,7 @@ class OpenExcel(QObject):
         self.load_timer = time()
 
     def excel_result(self, excel_data):
-        self.ui.progress_widget.progress.hide()
+        self.progress.hide()
 
         if not excel_data:
             LOGGER.info('Xlsx returned no data.')
@@ -67,7 +68,7 @@ class OpenExcel(QObject):
             item = QTreeWidgetItem(item_list)
             self.ui.treeWidget.addTopLevelItem(item)
 
-        # Store excel data in Exif class
+        # Store excel data in Ui class
         self.ui.excel_data = excel_data
 
         # Output load info
@@ -76,13 +77,14 @@ class OpenExcel(QObject):
         self.menu.enable_menus(True)
 
     def setup_progress(self, value):
-        self.ui.progress_widget.progress.show()
-        self.ui.progress_widget.progress.setValue(0)
-        self.ui.progress_widget.progress.setMaximum(value)
+        self.progress.setValue(0)
+        self.progress.setMaximum(value)
+        self.progress.show()
 
     def update_progress(self):
-        v = self.ui.progress_widget.progress.value() + 1
-        self.ui.progress_widget.progress.setValue(v)
+        self.progress.setFormat('%v / %m')
+        v = self.progress.value() + 1
+        self.progress.setValue(v)
 
 
 class ExcelThread(QThread):
@@ -125,13 +127,19 @@ class ReadExcel(QObject):
 
         self.num_items.emit(ws.max_row - start_row)
         excel_data = dict()
+        file_name = ''
 
         for row in range(start_row, ws.max_row + 1):
-            file_name = ws[f'{Exif.spreadsheet_file_column}{row}'].value
-            excel_data[file_name] = dict()
-
             for result in self._read_columns(row, ws):
                 key, value = result
+
+                if key == 'file':
+                    file_name = value
+                    excel_data[file_name] = dict()
+
+                if not file_name:
+                    continue
+
                 excel_data[file_name].update({key: value})
 
             LOGGER.debug('%s - %s', file_name, excel_data[file_name])

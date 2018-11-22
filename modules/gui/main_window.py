@@ -8,6 +8,7 @@ from modules.app_globals import Resource
 from modules.gui.icon_resource import IconRsc
 from modules.detect_language import get_translation
 from modules.log import init_logging
+from modules.widgets.page_settings import SettingsPage
 from modules.widgets.progress_overlay import ProgressOverlay
 
 LOGGER = init_logging(__name__)
@@ -24,7 +25,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.app = app
         SetupWidget.from_ui_file(self, Resource.ui_paths['tiffy'])
 
-        self.rk_icon = IconRsc.get_icon('RK_Icon')
+        self.rk_icon = IconRsc.get_icon('Icon')
         self.setWindowIcon(self.rk_icon)
 
         # Set version window title
@@ -32,11 +33,17 @@ class MainWindow(QtWidgets.QMainWindow):
             f'{_("Tiffy")} - v{self.app.version}'
             )
 
+        # ---- Setup overlay progress widget ----
+        self.progress_widget = ProgressOverlay(self.treeWidget)
+
         # Prepare translations
         self.translations()
 
         # ---- Setup Main Menu ----
         self.main_menu = MainWindowMenu(self)
+
+        # ---- Setup settings page ----
+        self.settings_page = SettingsPage(self)
 
         # ---- Setup path dialogs ----
         dialog_args = (_('Tiff Datei auswaehlen'),  # Title
@@ -45,9 +52,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.img_dir = SetDirectoryPath(app, self, mode='file2dir', line_edit=self.imgLineEdit, tool_button=self.imgBtn,
                                         dialog_args=dialog_args, reject_invalid_path_edits=False, parent=self)
-
-        # ---- Setup overlay progress widget ----
-        self.progress_widget = ProgressOverlay(self.treeWidget)
 
         # --- App will bind itself to start btn ---
         self.excel_data = None
@@ -78,3 +82,17 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def translations(self):
         self.menuDatei.setTitle(_("Datei"))
+
+        excel_tree_head = _("Datei;Titel;Author;Beschreibung;Stichwörter;Copyright")
+        header = QtWidgets.QTreeWidgetItem(excel_tree_head.split(';'))
+        self.treeWidget.setHeaderItem(header)
+
+        img_tree_head = _("Datei;Ergebnis")
+        header = QtWidgets.QTreeWidgetItem(img_tree_head.split(';'))
+        self.treeWidgetImg.setHeaderItem(header)
+
+        self.tabWidget.setTabText(0, _("Excel Daten"))
+        self.tabWidget.setTabText(1, _("Bild Ergebnis"))
+        self.tabWidget.setTabText(2, _("Einstellungen"))
+
+        self.startBtn.setText(_("Exiftool starten"))

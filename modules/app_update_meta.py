@@ -1,3 +1,4 @@
+import fnmatch
 from typing import Union
 from pathlib import Path
 from PyQt5.QtWidgets import QTreeWidgetItem
@@ -25,7 +26,18 @@ class ImgMetaDataApp(QObject):
 
         self.ui.startBtn.pressed.connect(self.start_exif_worker)
 
-    def setup_exif_app(self):
+    def start_exif_worker(self):
+        self.ui.tabWidget.setCurrentIndex(0)
+        self.ui.startBtn.setEnabled(False)
+        self.run_exif_app()
+
+    def finish_exif_worker(self):
+        self.ui.tabWidget.setCurrentIndex(1)
+        self.exif_worker.exit()
+        self.ui.startBtn.setEnabled(True)
+        self.ui.progress_widget.progress.hide()
+
+    def run_exif_app(self):
         self.exif_worker = ImgMetaDataWorker(self.ui.img_dir.path, self.ui.excel_data)
 
         self.exif_worker.num_items.connect(self.setup_progress)
@@ -36,7 +48,7 @@ class ImgMetaDataApp(QObject):
         self.exif_worker.start()
 
     def setup_progress(self, value):
-        self.ui.treeWidget.clear()
+        self.ui.treeWidgetImg.clear()
         self.ui.progress_widget.progress.show()
         self.ui.progress_widget.progress.setValue(0)
         self.ui.progress_widget.progress.setMaximum(value)
@@ -46,21 +58,12 @@ class ImgMetaDataApp(QObject):
         self.ui.progress_widget.progress.setValue(v)
 
         item = QTreeWidgetItem((file_name, msg))
-        self.ui.treeWidget.addTopLevelItem(item)
+        self.ui.treeWidgetImg.addTopLevelItem(item)
 
     def message(self, msg):
         msg_box = GenericMsgBox(self.ui, _("Bildprozessor"), msg)
         msg_box.exec()
         self.ui.statusBar().showMessage(msg, 8000)
-
-    def start_exif_worker(self):
-        self.ui.startBtn.setEnabled(False)
-        self.setup_exif_app()
-
-    def finish_exif_worker(self):
-        self.exif_worker.exit()
-        self.ui.startBtn.setEnabled(True)
-        self.ui.progress_widget.progress.hide()
 
 
 class ImgMetaDataWorker(QThread):
@@ -80,12 +83,13 @@ class ImgMetaDataWorker(QThread):
         self.img_work_queue = list()
         self.missing_imgs = list()
         self.cmd_list = list()
-        self.started.connect(self.init_process)
 
         self.exif_timeout = QTimer()
         self.exif_timeout.setSingleShot(True)
         self.exif_timeout.setInterval(500)
         self.exif_timeout.timeout.connect(self.work)
+
+        self.started.connect(self.init_process)
 
     def run(self):
         self.exec()
@@ -96,9 +100,14 @@ class ImgMetaDataWorker(QThread):
             return
 
         for img_file in self.exif.get_img_files():
-            if img_file.stem in self.excel_data.keys():
+            # Last two digits of file name indicate page number and are ignored
+            file_match = fnmatch.filter(self.excel_data.keys(), f'{img_file.stem[:-2]}??')
+
+            if file_match:
+                file_match = file_match[0]
+
                 self.img_work_queue.append(
-                    (img_file, self.excel_data[img_file.stem])
+                    (img_file, self.excel_data[file_match])
                                       )
             else:
                 self.missing_imgs.append(img_file)
@@ -123,7 +132,6 @@ class ImgMetaDataWorker(QThread):
 
     def work(self):
         if not len(self.img_work_queue):
-            LOGGER.debug('Queue empty. Finishing work.')
             self.finish_work()
             return
 

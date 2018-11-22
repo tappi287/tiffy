@@ -22,17 +22,23 @@ class Exif(QtCore.QObject):
     xmp_keys = ['XMP:Title', 'XMP:Creator', 'XMP:Description', 'XMP:Subject', 'XMP:Rights']
     iptc_keys = ['IPTC:ObjectName', 'IPTC:By-line', 'IPTC:Caption-Abstract', 'IPTC:Keywords', 'IPTC:CopyrightNotice']
     exif_keys = [None, 'EXIF:Artist', 'EXIF:ImageDescription', None, 'EXIF:Copyright']
+
+    # Actual Exiftool tag names
     exiftool_tags = ['-Title', '-Creator', '-Description', '-Subject', '-Rights']
 
-    spreadsheet_file_column = 'B'
     spreadsheet_map = {
+        'file': 'B',
         'title': 'K',
         'author': None,
         'description': None,
         'keywords': 'B',
         'copyright': 'EG'
         }
-    max_threads = 8
+
+    # Maximum number of concurrent exiftool instances (running in QThreadPool)
+    # Note that performance is mainly influenced by network/drive read and write speed
+    # Having to many instances read and write may greatly reduces performance
+    max_threads = 4
 
     def __init__(self, img_path: Path, ideal_thread_count: int=2):
         super(Exif, self).__init__()
@@ -90,5 +96,5 @@ class ExifRunner(QtCore.QRunnable):
             params = map(exiftool.fsencode, self.cmd_list)
             result = et.execute(*params).decode('UTF-8')
 
-            LOGGER.debug('Exiftool result: %s', result)
+            LOGGER.debug('Exiftool result: %s %s', self.current_file, result)
             self.signals.result.emit(self.current_file, result)

@@ -21,18 +21,17 @@ class MainApp(QtWidgets.QApplication):
     def __init__(self, version, exception_hook: GuiExceptionHook=None):
         super(MainApp, self).__init__(sys.argv)
 
-        if exception_hook:
-            exception_hook.app = self
-            exception_hook.setup_signal_destination(self.app_exception)
-
         splash = show_splash_screen_movie(self)
 
         self.version = version
 
         self.ui = MainWindow(self)
+        splash.finish(self.ui)
         self.ui.show()
 
-        splash.finish(self.ui)
+        if exception_hook:
+            exception_hook.app = self
+            exception_hook.setup_signal_destination(self.app_exception)
 
     def app_exception(self, msg):
         msg = _("Ausnahme aufgetreten: <br><br>") + msg.replace('\n', '<br>')

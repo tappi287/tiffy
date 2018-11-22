@@ -100,7 +100,7 @@ class TiffySettings:
                 cls.app[k] = v
 
         cls.setup_lang()
-        LOGGER.debug('KnechtSettings successfully loaded from file.')
+        LOGGER.debug('TiffySettings successfully loaded from file.')
 
     @classmethod
     def save(cls) -> None:

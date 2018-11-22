@@ -6,30 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>918</width>
-    <height>657</height>
+    <width>921</width>
+    <height>695</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="widgetLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QVBoxLayout" name="centralLayout">
       <property name="spacing">
@@ -61,7 +46,7 @@
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap>:/type/img.png</pixmap>
+           <pixmap resource="res/gui_resource.qrc">:/type/img.png</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -85,37 +70,416 @@
        </layout>
       </item>
       <item>
-       <widget class="QTreeWidget" name="treeWidget">
-        <column>
-         <property name="text">
-          <string>Datei</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Titel</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Author</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Beschreibung</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Stichwörter</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Copyright</string>
-         </property>
-        </column>
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="excelTab">
+         <attribute name="title">
+          <string>Excel Daten</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QTreeWidget" name="treeWidget">
+            <column>
+             <property name="text">
+              <string>Datei</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Titel</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Author</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Beschreibung</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Stichwörter</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Copyright</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="imgTab">
+         <attribute name="title">
+          <string>Bilddaten</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QTreeWidget" name="treeWidgetImg">
+            <column>
+             <property name="text">
+              <string>Datei</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Ergebnis</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tab">
+         <attribute name="title">
+          <string>Einstellungen</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>10</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="title">
+             <string>Excel Tabellenzuordnungen</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_5">
+             <property name="spacing">
+              <number>4</number>
+             </property>
+             <property name="leftMargin">
+              <number>13</number>
+             </property>
+             <property name="topMargin">
+              <number>4</number>
+             </property>
+             <property name="rightMargin">
+              <number>13</number>
+             </property>
+             <property name="bottomMargin">
+              <number>4</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="excelDesc">
+               <property name="text">
+                <string>Legt fest welche Spalte der Tabelle für die entsprechenden Metadaten verwendet wird.</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QGridLayout" name="gridLayout">
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <property name="topMargin">
+                <number>9</number>
+               </property>
+               <property name="bottomMargin">
+                <number>9</number>
+               </property>
+               <property name="horizontalSpacing">
+                <number>9</number>
+               </property>
+               <property name="verticalSpacing">
+                <number>10</number>
+               </property>
+               <item row="1" column="2">
+                <widget class="QLabel" name="titleDesc">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>10</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Beschreibung</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="authorLabel">
+                 <property name="text">
+                  <string>Author</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="authorInput">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QLabel" name="authorDesc">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>10</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Beschreibung</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="descLabel">
+                 <property name="text">
+                  <string>Beschreibung</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="fileInput">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QLabel" name="fileDesc">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>10</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Beschreibung</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="fileLabel">
+                 <property name="text">
+                  <string>Datei</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="descInput">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QLabel" name="descDesc">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>10</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Beschreibung</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="titleLabel">
+                 <property name="text">
+                  <string>Titel</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="2">
+                <widget class="QLabel" name="keyDesc">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>10</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Beschreibung</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLineEdit" name="keyInput">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="keyLabel">
+                 <property name="text">
+                  <string>Stichwörter</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="titleInput">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="rightLabel">
+                 <property name="text">
+                  <string>Copyright</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLineEdit" name="rightInput">
+                 <property name="maximumSize">
+                  <size>
+                   <width>50</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLabel" name="rightDesc">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>10</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Beschreibung</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="appSettings">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>1</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>Anwendung</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_6">
+             <property name="spacing">
+              <number>13</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="appSettingDesc">
+               <property name="text">
+                <string>Erweiterte Anwendungseinstellungen. Unerfahrenen Benutzern wird empfohlen diese Einstellungen nicht zu ändern.</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="threadCountBox">
+               <property name="title">
+                <string>Thread Count</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QSlider" name="threadCountSlider">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>12</number>
+                  </property>
+                  <property name="pageStep">
+                   <number>4</number>
+                  </property>
+                  <property name="value">
+                   <number>4</number>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="tickPosition">
+                   <enum>QSlider::TicksBothSides</enum>
+                  </property>
+                  <property name="tickInterval">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
       <item>
@@ -134,7 +498,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>918</width>
+     <width>921</width>
      <height>31</height>
     </rect>
    </property>
@@ -147,8 +511,39 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>imgLineEdit</tabstop>
+  <tabstop>imgBtn</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>fileInput</tabstop>
+  <tabstop>titleInput</tabstop>
+  <tabstop>authorInput</tabstop>
+  <tabstop>descInput</tabstop>
+  <tabstop>keyInput</tabstop>
+  <tabstop>rightInput</tabstop>
+  <tabstop>startBtn</tabstop>
+  <tabstop>treeWidgetImg</tabstop>
+  <tabstop>treeWidget</tabstop>
+ </tabstops>
  <resources>
   <include location="res/gui_resource.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>threadCountBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>threadCountSlider</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>123</x>
+     <y>455</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>520</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
