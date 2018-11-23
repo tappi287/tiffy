@@ -1,6 +1,10 @@
 import os
+import sys
 
-UI_PATH = 'ui'
+# Base path depending on running in dev or PyInstaller
+BASE_PATH = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__ + '/..')))
+
+UI_PATH = os.path.join(BASE_PATH, 'ui')
 UI_PATHS_FILE = 'gui_resource_paths.json'
 
 LOG_FILE_NAME = 'tiffy.log'
@@ -8,18 +12,12 @@ LOG_FILE_NAME = 'tiffy.log'
 SETTINGS_FILE = 'settings.json'
 SETTINGS_DIR_NAME = 'tiffy'
 
-EXIFTOOL_BINARY = 'bin/exiftool.exe'
+EXIFTOOL_BINARY = os.path.join(BASE_PATH, 'bin/exiftool.exe')
 
 
 def get_current_modules_dir():
     """ Return path to this app modules directory """
-    # Path to this module
-    current_path = os.path.dirname(__file__)
-
-    # Traverse one directoy up
-    current_path = os.path.abspath(os.path.join(current_path, '../'))
-
-    return current_path
+    return BASE_PATH
 
 
 def get_settings_dir() -> str:

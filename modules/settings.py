@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Union, Any
 
 from modules.app_globals import Resource, UI_PATH, UI_PATHS_FILE, SETTINGS_FILE
-from modules.app_globals import get_current_modules_dir, get_settings_dir
+from modules.app_globals import get_settings_dir
 from modules.log import init_logging
 from modules.detect_language import setup_translation
 
@@ -120,7 +120,7 @@ class TiffySettings:
     @classmethod
     def load_ui_resources(cls) -> bool:
         """ update app globals with GUI resource paths """
-        ui_paths_file = Path(get_current_modules_dir()) / Path(UI_PATH) / Path(UI_PATHS_FILE)
+        ui_paths_file = Path(UI_PATH) / Path(UI_PATHS_FILE)
 
         if not ui_paths_file.exists():
             LOGGER.fatal('Could not locate gui resource file: %s. Aborting application.',

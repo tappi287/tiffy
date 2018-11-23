@@ -26,7 +26,7 @@ import locale
 import ctypes
 from gettext import translation
 
-from modules.app_globals import get_current_modules_dir
+from modules.app_globals import BASE_PATH
 
 
 def get_ms_windows_language():
@@ -68,5 +68,5 @@ def get_translation():
         print('Setting language from OS.')
         os.environ.setdefault('LANGUAGE', get_ms_windows_language())
 
-    locale_dir = os.path.join(get_current_modules_dir(), 'locale')
+    locale_dir = os.path.join(BASE_PATH, 'locale')
     return translation('tiffy', localedir=locale_dir)

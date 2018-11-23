@@ -6,8 +6,8 @@ name = "pypi"
 [packages]
 openpyxl = "*"
 "pyqt5" = "*"
-ocrd-pyexiftool = "*"
 lxml = "*"
+pyinstaller = "*"
 
 [dev-packages]
 
