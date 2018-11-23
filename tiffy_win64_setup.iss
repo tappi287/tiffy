@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Tiffy"
-#define MyAppVersion "0.56"
+#define MyAppVersion "0.60"
 #define MyAppPublisher "Stefan Tapper"
 #define MyAppURL "https://github.com/tappi287/tiffy"
 #define MyAppExeName "tiffy.exe"
@@ -23,7 +23,7 @@ DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 LicenseFile="dist\tiffy\license.txt"
-OutputDir="\release"
+OutputDir="release"
 OutputBaseFilename=tiffy_setup
 SetupIconFile="ui\Icon.ico"
 Compression=lzma
