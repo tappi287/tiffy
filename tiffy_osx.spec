@@ -38,5 +38,5 @@ exe = EXE(pyz,
           console=False )
 app = BUNDLE(exe,
              name='tiffy.app',
-             icon=None,
+             icon='ui/AppIcon.icns',
              bundle_identifier=None)
