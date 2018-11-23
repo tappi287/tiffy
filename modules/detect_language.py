@@ -65,8 +65,12 @@ def get_translation():
     # Set OS language if not already set
     lang = os.environ.get('LANGUAGE')
     if not lang:
-        print('Setting language from OS.')
-        os.environ.setdefault('LANGUAGE', get_ms_windows_language())
+        if os.name == 'nt':
+            lang = get_ms_windows_language()
+        else:
+            lang = 'de'
+
+    os.environ.setdefault('LANGUAGE', lang)
 
     locale_dir = os.path.join(BASE_PATH, 'locale')
     return translation('tiffy', localedir=locale_dir)

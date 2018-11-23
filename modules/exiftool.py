@@ -168,19 +168,22 @@ class ExifTool(object):
         ``-n`` as common arguments, which are automatically included
         in every command you run with :py:meth:`execute()`.
         """
-        CREATE_NO_WINDOW = 0x08000000
 
         if self.running:
             warnings.warn("ExifTool already running; doing nothing.")
             return
         with open(os.devnull, "w") as devnull:
+            flags = dict()
+            if os.name == 'nt':
+                flags.update(dict(creationflags=0x08000000))
 
             self._process = subprocess.Popen(
                 [self.executable, "-stay_open", "True",  "-@", "-",
                  "-common_args", "-G", "-n"],
-                creationflags=CREATE_NO_WINDOW,
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                stderr=devnull)
+                stderr=devnull, *flags
+            )
+
         self.running = True
 
     def terminate(self):

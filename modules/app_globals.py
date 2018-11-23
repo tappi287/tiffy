@@ -1,6 +1,8 @@
 import os
 import sys
 
+from appdirs import user_data_dir
+
 # Base path depending on running in dev or PyInstaller
 BASE_PATH = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__ + '/..')))
 
@@ -12,7 +14,12 @@ LOG_FILE_NAME = 'tiffy.log'
 SETTINGS_FILE = 'settings.json'
 SETTINGS_DIR_NAME = 'tiffy'
 
-EXIFTOOL_BINARY = os.path.join(BASE_PATH, 'bin/exiftool.exe')
+
+def get_exif_executable():
+    if os.name == 'nt':
+        return os.path.join(BASE_PATH, 'bin/exiftool.exe')
+    else:
+        return os.path.join(BASE_PATH, 'bin/exiftool')
 
 
 def get_current_modules_dir():
@@ -21,9 +28,7 @@ def get_current_modules_dir():
 
 
 def get_settings_dir() -> str:
-    _app_data = os.getenv('APPDATA')
-
-    _knecht_settings_dir = os.path.join(_app_data, SETTINGS_DIR_NAME)
+    _knecht_settings_dir = user_data_dir(SETTINGS_DIR_NAME)
 
     if not os.path.exists(_knecht_settings_dir):
         try:

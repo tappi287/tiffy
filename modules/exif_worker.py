@@ -3,7 +3,7 @@ from pathlib import Path
 from PyQt5 import QtCore
 
 from modules.exiftool import ExifTool, fsencode
-from modules.app_globals import EXIFTOOL_BINARY
+from modules.app_globals import get_exif_executable
 from modules.detect_language import get_translation
 from modules.log import init_logging
 
@@ -57,7 +57,7 @@ class Exif(QtCore.QObject):
         self.result.emit(file_name, result)
 
     def read_meta_data(self):
-        with ExifTool(executable_=EXIFTOOL_BINARY) as et:
+        with ExifTool(executable_=get_exif_executable()) as et:
             metadata = et.get_metadata_batch(self.get_img_files().as_posix())
 
         if not metadata:
@@ -85,7 +85,7 @@ class ExifRunner(QtCore.QRunnable):
         self.signals.result.connect(result_callback)
 
     def run(self):
-        with ExifTool(executable_=EXIFTOOL_BINARY) as et:
+        with ExifTool(executable_=get_exif_executable()) as et:
             LOGGER.debug('Sending commands %s', self.cmd_list)
 
             params = map(fsencode, self.cmd_list)
