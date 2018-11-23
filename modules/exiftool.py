@@ -172,16 +172,17 @@ class ExifTool(object):
         if self.running:
             warnings.warn("ExifTool already running; doing nothing.")
             return
+
         with open(os.devnull, "w") as devnull:
-            flags = dict()
+            flags = 0
             if os.name == 'nt':
-                flags.update(dict(creationflags=0x08000000))
+                flags = 0x08000000
 
             self._process = subprocess.Popen(
                 [self.executable, "-stay_open", "True",  "-@", "-",
                  "-common_args", "-G", "-n"],
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-                stderr=devnull, *flags
+                stderr=devnull, creationflags=flags
             )
 
         self.running = True

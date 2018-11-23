@@ -28,7 +28,7 @@ def get_current_modules_dir():
 
 
 def get_settings_dir() -> str:
-    _knecht_settings_dir = user_data_dir(SETTINGS_DIR_NAME)
+    _knecht_settings_dir = user_data_dir(SETTINGS_DIR_NAME, '')
 
     if not os.path.exists(_knecht_settings_dir):
         try:
