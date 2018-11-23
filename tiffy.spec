@@ -2,7 +2,8 @@
 
 block_cipher = None
 
-tiffy_files = [('locale', 'locale'),
+tiffy_files = [('locale/de/LC_MESSAGES/*.mo', 'locale/de/LC_MESSAGES'),
+               ('locale/en/LC_MESSAGES/*.mo', 'locale/en/LC_MESSAGES'),
                ('ui/gui_resource*', 'ui'),
                ('ui/tiffy*', 'ui'),
                ('license.txt', '.'),]

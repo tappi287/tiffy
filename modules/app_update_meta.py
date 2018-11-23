@@ -128,6 +128,30 @@ class ImgMetaDataWorker(QThread):
             self.finish_process.emit()
             return False
 
+        if not self.verify_excel_data(self.excel_data):
+            LOGGER.error('Excel contained invalid keys only. Could not associate image files. Aborting.')
+            self.msg.emit(_('Der Tabelle fehlen Daten in der Spalte für die korrespondierenden Dateinamen.<br><br>'
+                            'Konnte keine Einträge mit gültigen Dateinamen finden. Überprüfe in den Einstellungen '
+                            'ob die Spalte für die Dateinamen korrekt eingestellt ist.'))
+            self.finish_process.emit()
+            return False
+
+        return True
+
+    @staticmethod
+    def verify_excel_data(excel_data: dict):
+        invalid_keys = set()
+
+        for k in excel_data.keys():
+            if not k:
+                invalid_keys.add(k)
+
+        for k in invalid_keys:
+            excel_data.pop(k)
+
+        if not excel_data:
+            return False
+
         return True
 
     def work(self):
