@@ -2,6 +2,11 @@
 # PyExifTool <http://github.com/smarnach/pyexiftool>
 # Copyright 2012 Sven Marnach
 
+# Monkey patched by Stefan Tapper Nov 2018
+#  - added CREATE_NO_WINDOW flag to subprocess.Popen
+#    to supress CMD window creation when running in windowed, no-console, standalone frozen
+#    PyInstaller bundle
+
 # This file is part of PyExifTool.
 #
 # PyExifTool is free software: you can redistribute it and/or modify

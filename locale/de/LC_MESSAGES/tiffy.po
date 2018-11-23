@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-11-22 19:04+0100\n"
+"POT-Creation-Date: 2018-11-23 10:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,11 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: modules/gui\main_app.py:37
+#: modules/gui\main_app.py:49
 msgid "Ausnahme aufgetreten: <br><br>"
 msgstr ""
 
-#: modules/gui\main_app.py:38
+#: modules/gui\main_app.py:50
 msgid "Schwerwiegender Fehler"
 msgstr ""
 
@@ -43,7 +43,7 @@ msgstr ""
 msgid "Datei"
 msgstr ""
 
-#: modules/gui\main_window.py:86 modules/widgets\page_settings.py:106
+#: modules/gui\main_window.py:86
 msgid "Datei;Titel;Author;Beschreibung;Stichwörter;Copyright"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgid "Über Qt"
 msgstr ""
 
 #: modules/widgets\menu_info.py:35
-msgid "<i>{0} licensed under GPL v3</i><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Besuche den <a href=\"https://github.com/tappi287/tiffy\">Quelltext@github</a> dieser Software!<br><br>Tiffy ist <b>Freie Software</b>: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation, Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR,; sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten.<br><br>Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe <a href=\"http://www.gnu.org/licenses/\">hier</a>."
+msgid "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Besuche den <a href=\"https://github.com/tappi287/tiffy\">Quelltext@github</a> dieser Software!<br><br>Tiffy ist <b>Freie Software</b>: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation, Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR,; sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten.<br><br>Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe <a href=\"http://www.gnu.org/licenses/\">hier</a>."
 msgstr ""
 
 #: modules/widgets\menu_language.py:19
@@ -147,27 +147,31 @@ msgstr ""
 msgid "Das gewaehlte Dokument konnte nicht geladen werden.<br><br>Es enthaelt entweder Keine oder keine unterstuetzten Daten."
 msgstr ""
 
-#: modules/widgets\page_settings.py:107
-msgid "Enthält den korrespondierenden Dateinamen;Enthält den korrespondierenden Titel;Enthält den korrespondierenden Author;Enthält die korrespondierende Beschreibung;Enthält die korrespondierenden Stichwörter;Enthält den korrespondierenden Rechtshinweis"
+#: modules/widgets\page_settings.py:106
+msgid "Dateiname;Titel;Author;Beschreibung;Stichwörter;Copyright"
 msgstr ""
 
-#: modules/widgets\page_settings.py:124
-msgid "Excel Tabellenzuordnungen"
+#: modules/widgets\page_settings.py:107
+msgid "<b>Diese Spalte MUSS befüllt sein.</b> Leere Zeilen werden übersprungen. Enthält den Dateinamen ohne Dateierweiterung.;Enthält den korrespondierenden Titel;Enthält den korrespondierenden Author;Enthält die korrespondierende Beschreibung;Enthält die korrespondierenden Stichwörter;Enthält den korrespondierenden Rechtshinweis"
 msgstr ""
 
 #: modules/widgets\page_settings.py:125
+msgid "Excel Tabellenzuordnungen"
+msgstr ""
+
+#: modules/widgets\page_settings.py:126
 msgid "Legt fest welche Spalte der Tabelle für die entsprechenden Metadaten verwendet wird. Leere Felder und Spalten mit Nummer 0 werden nicht berücksichtigt."
 msgstr ""
 
-#: modules/widgets\page_settings.py:128
+#: modules/widgets\page_settings.py:129
 msgid "Anwendung"
 msgstr ""
 
-#: modules/widgets\page_settings.py:129
+#: modules/widgets\page_settings.py:130
 msgid "Erweiterte Anwendungseinstellungen. Unerfahrenen Benutzern wird empfohlen diese Einstellungen nicht zu ändern."
 msgstr ""
 
-#: modules/widgets\page_settings.py:131
+#: modules/widgets\page_settings.py:132
 msgid "Standard wiederherstellen"
 msgstr ""
 
@@ -191,7 +195,11 @@ msgstr ""
 msgid "Keine Excel Daten geladen."
 msgstr ""
 
-#: modules\app_update_meta.py:163
+#: modules\app_update_meta.py:133
+msgid "Der Tabelle fehlen Daten in der Spalte für die korrespondierenden Dateinamen.<br><br>Konnte keine Einträge mit gültigen Dateinamen finden. Überprüfe in den Einstellungen ob die Spalte für die Dateinamen korrekt eingestellt ist."
+msgstr ""
+
+#: modules\app_update_meta.py:187
 msgid "ACHTUNG! Bilddatei -NICHT- in Excel gefunden!"
 msgstr ""
 

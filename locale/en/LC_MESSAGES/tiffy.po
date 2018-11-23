@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-11-22 19:04+0100\n"
-"PO-Revision-Date: 2018-11-22 19:07+0100\n"
+"POT-Creation-Date: 2018-11-23 10:46+0100\n"
+"PO-Revision-Date: 2018-11-23 10:59+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=cp1252\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Language: en\n"
 "X-Generator: Poedit 2.2\n"
 
-#: modules/gui\main_app.py:37
+#: modules/gui\main_app.py:49
 msgid "Ausnahme aufgetreten: <br><br>"
-msgstr "Unhandled exception: <br><br>"
+msgstr "Exception occurred:<br><br>"
 
-#: modules/gui\main_app.py:38
+#: modules/gui\main_app.py:50
 msgid "Schwerwiegender Fehler"
 msgstr "Serious error"
 
@@ -44,7 +44,7 @@ msgstr "No message supplied."
 msgid "Datei"
 msgstr "File"
 
-#: modules/gui\main_window.py:86 modules/widgets\page_settings.py:106
+#: modules/gui\main_window.py:86
 msgid "Datei;Titel;Author;Beschreibung;Stichwörter;Copyright"
 msgstr "File;Title;Author;Description;Keywords;Copyright"
 
@@ -133,8 +133,8 @@ msgid "Über Qt"
 msgstr "About Qt"
 
 #: modules/widgets\menu_info.py:35
-msgid "<i>{0} licensed under GPL v3</i><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Besuche den <a href=\"https://github.com/tappi287/tiffy\">Quelltext@github</a> dieser Software!<br><br>Tiffy ist <b>Freie Software</b>: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation, Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR,; sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten.<br><br>Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe <a href=\"http://www.gnu.org/licenses/\">hier</a>."
-msgstr "<i>{0} licensed under GPL v3</i><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Visit the <a href=\\https://github.com/tappi287/tiffy\\>source code@github</a> of this software!<br><br>Tiffy is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br><br>Tiffy is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with Tiffy. If not, see <a href=\\http://www.gnu.org/licenses/\\>here</a>."
+msgid "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Besuche den <a href=\"https://github.com/tappi287/tiffy\">Quelltext@github</a> dieser Software!<br><br>Tiffy ist <b>Freie Software</b>: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation, Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR,; sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten.<br><br>Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe <a href=\"http://www.gnu.org/licenses/\">hier</a>."
+msgstr "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Visit the <a href=\"https://github.com/tappi287/tiffy\">source code@github</a> of this software!<br><br>Tiffy is <b>free Software</b>: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with Tiffy. If not, see <a href=\"http://www.gnu.org/licenses/\">here</a>."
 
 #: modules/widgets\menu_language.py:19
 msgid "Sprache"
@@ -148,27 +148,31 @@ msgstr "Open Xml file ..."
 msgid "Das gewaehlte Dokument konnte nicht geladen werden.<br><br>Es enthaelt entweder Keine oder keine unterstuetzten Daten."
 msgstr "The choosen document could not be loaded.<br><br>It contains unsupported or no data at all."
 
-#: modules/widgets\page_settings.py:107
-msgid "Enthält den korrespondierenden Dateinamen;Enthält den korrespondierenden Titel;Enthält den korrespondierenden Author;Enthält die korrespondierende Beschreibung;Enthält die korrespondierenden Stichwörter;Enthält den korrespondierenden Rechtshinweis"
-msgstr "Column containing corresponding file name;Column containing corresponding title;Column containing corresponding Author;Column containing corresponding description;Column containing corresponding keywords;Column containing corresponding copyright notice"
+#: modules/widgets\page_settings.py:106
+msgid "Dateiname;Titel;Author;Beschreibung;Stichwörter;Copyright"
+msgstr "File Name;Title;Author;Description;Keywords;Copyright"
 
-#: modules/widgets\page_settings.py:124
+#: modules/widgets\page_settings.py:107
+msgid "<b>Diese Spalte MUSS befüllt sein.</b> Leere Zeilen werden übersprungen. Enthält den Dateinamen ohne Dateierweiterung.;Enthält den korrespondierenden Titel;Enthält den korrespondierenden Author;Enthält die korrespondierende Beschreibung;Enthält die korrespondierenden Stichwörter;Enthält den korrespondierenden Rechtshinweis"
+msgstr "<b>Column MUST be filled. </b> Empty lines are skipped. Contains the file name without file extension.;contains the corresponding title;contains the corresponding author;contains the corresponding description;contains the corresponding keywords;contains the corresponding legal advice"
+
+#: modules/widgets\page_settings.py:125
 msgid "Excel Tabellenzuordnungen"
 msgstr "Excel Column Assignments"
 
-#: modules/widgets\page_settings.py:125
+#: modules/widgets\page_settings.py:126
 msgid "Legt fest welche Spalte der Tabelle für die entsprechenden Metadaten verwendet wird. Leere Felder und Spalten mit Nummer 0 werden nicht berücksichtigt."
 msgstr "Assigns the selected columns with the corresponding meta data. Empty fields and column with number 0 are ignored."
 
-#: modules/widgets\page_settings.py:128
+#: modules/widgets\page_settings.py:129
 msgid "Anwendung"
 msgstr "Application"
 
-#: modules/widgets\page_settings.py:129
+#: modules/widgets\page_settings.py:130
 msgid "Erweiterte Anwendungseinstellungen. Unerfahrenen Benutzern wird empfohlen diese Einstellungen nicht zu ändern."
 msgstr "Advanced application settings. Inexperienced users are adviced not to change these settings."
 
-#: modules/widgets\page_settings.py:131
+#: modules/widgets\page_settings.py:132
 msgid "Standard wiederherstellen"
 msgstr "Restore defaults"
 
@@ -192,6 +196,10 @@ msgstr "No path to image files given."
 msgid "Keine Excel Daten geladen."
 msgstr "No Excel data loaded."
 
-#: modules\app_update_meta.py:163
+#: modules\app_update_meta.py:133
+msgid "Der Tabelle fehlen Daten in der Spalte für die korrespondierenden Dateinamen.<br><br>Konnte keine Einträge mit gültigen Dateinamen finden. Überprüfe in den Einstellungen ob die Spalte für die Dateinamen korrekt eingestellt ist."
+msgstr "The table lacks data in the column for the corresponding file names.<br><br>Could not find entries with valid file names. Check the settings to see if the file name column is set correctly."
+
+#: modules\app_update_meta.py:187
 msgid "ACHTUNG! Bilddatei -NICHT- in Excel gefunden!"
 msgstr "ATTENTION! Image file -not- found in Excel!"

@@ -103,8 +103,9 @@ class SettingsPage(QObject):
                 box.setValue(0)
 
     def translations(self):
-        titles = _('Datei;Titel;Author;Beschreibung;Stichwörter;Copyright').split(';')
-        desc = _('Enthält den korrespondierenden Dateinamen;'
+        titles = _('Dateiname;Titel;Author;Beschreibung;Stichwörter;Copyright').split(';')
+        desc = _('<b>Diese Spalte MUSS befüllt sein.</b> Leere Zeilen werden übersprungen. Enthält den Dateinamen ohne '
+                 'Dateierweiterung.;'
                  'Enthält den korrespondierenden Titel;'
                  'Enthält den korrespondierenden Author;'
                  'Enthält die korrespondierende Beschreibung;'

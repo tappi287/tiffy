@@ -32,7 +32,7 @@ class InfoMenu(QMenu):
         QMessageBox.aboutQt(self.ui, self.about_title)
 
     def show_about_box(self):
-        txt = _('<i>{0} licensed under GPL v3</i><br><i>Copyright © 2018 Stefan Tapper</i><br><br>'
+        txt = _('<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>'
                 'Besuche den <a href="https://github.com/tappi287/tiffy">Quelltext@github</a> dieser Software!<br><br>'
                 'Tiffy ist <b>Freie Software</b>: Sie können es unter den Bedingungen '
                 'der GNU General Public License, wie von der Free Software Foundation, '
