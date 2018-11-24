@@ -95,7 +95,7 @@ class ExcelThread(QThread):
         self.parent, self.file = parent, file
 
     def run(self):
-        excel_reader = ReadExcel(self.parent)
+        excel_reader = ReadExcel()
         excel_reader.progress.connect(self.parent.update_progress)
         excel_reader.num_items.connect(self.parent.setup_progress)
         excel_reader.num_items.emit(0)
@@ -109,8 +109,8 @@ class ReadExcel(QObject):
     progress = pyqtSignal()
     num_items = pyqtSignal(int)
 
-    def __init__(self, parent):
-        super(ReadExcel, self).__init__(parent)
+    def __init__(self):
+        super(ReadExcel, self).__init__()
 
     def get_data(self, file):
         ws = self.load(file)
