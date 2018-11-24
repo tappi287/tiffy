@@ -106,3 +106,4 @@ venv.bak/
 *.xlxs
 .idea
 ui/res
+test

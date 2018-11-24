@@ -2,7 +2,8 @@
 
 block_cipher = None
 
-tiffy_files = [('bin', 'bin'),
+tiffy_files = [('bin/exiftool', 'bin'),
+               ('bin/lib', 'bin/lib'),
                ('locale/de/LC_MESSAGES/*.mo', 'locale/de/LC_MESSAGES'),
                ('locale/en/LC_MESSAGES/*.mo', 'locale/en/LC_MESSAGES'),
                ('ui/gui_resource*', 'ui'),
