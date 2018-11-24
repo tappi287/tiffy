@@ -107,3 +107,4 @@ venv.bak/
 .idea
 ui/res
 test
+.vscode/settings.json
