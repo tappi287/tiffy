@@ -22,7 +22,7 @@ class ImgMetaDataApp(QObject):
     dpi_res_x = '300.0'
     dpi_res_y = '300.0'
     dpi_unit = '2'  # 3=cm 2=inches
-    dpi_tags = ['-YResolution', '-XResolution', '-ResolutionUnit']
+    dpi_tags = ['-ResolutionUnit', '-XResolution', '-YResolution']
 
     def __init__(self, ui):
         super(ImgMetaDataApp, self).__init__(ui)
@@ -208,7 +208,7 @@ class ImgMetaDataWorker(QThread):
 
         if self.update_dpi:
             # Update units from user settings and update resolution, eg 300dpi or 118,11 ppc
-            for tag, value in zip(self.dpi_tags, (self.dpi_res_x, self.dpi_res_y, self.dpi_unit)):
+            for tag, value in zip(self.dpi_tags, (self.dpi_unit, self.dpi_res_x, self.dpi_res_y)):
                 command.append(f'{tag}={value}')
 
         if self.update_from_excel:
@@ -219,6 +219,7 @@ class ImgMetaDataWorker(QThread):
                 command.append(f'{tag}={dict_value}')
 
         # Do not back up files
+        # command.append('-v3')
         command.append('-overwrite_original')
         command.append(f'{img_file.as_posix()}')
 
