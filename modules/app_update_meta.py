@@ -1,4 +1,5 @@
 import fnmatch
+import re
 from typing import Union
 from pathlib import Path
 from PyQt5.QtWidgets import QTreeWidgetItem
@@ -23,6 +24,9 @@ class ImgMetaDataApp(QObject):
     dpi_res_y = '300.0'
     dpi_unit = '2'  # 3=cm 2=inches
     dpi_tags = ['-ResolutionUnit', '-XResolution', '-YResolution']
+
+    ignored_name_patterns = ('_VERSO?$', '_RECTO?$')
+    ignore_last_digits = True
 
     def __init__(self, ui):
         super(ImgMetaDataApp, self).__init__(ui)
@@ -154,6 +158,11 @@ class ImgMetaDataWorker(QThread):
         self.dpi_res_x = parent_app.dpi_res_x
         self.dpi_res_y = parent_app.dpi_res_y
 
+        # Name settings
+        # TODO: integrate setting in gui
+        self.ignored_name_patterns = parent_app.ignored_name_patterns
+        self.ignore_last_digits = parent_app.ignore_last_digits
+
         self.path = path
         self.excel_data = excel_data
         self.update_from_excel = update_from_excel
@@ -183,8 +192,7 @@ class ImgMetaDataWorker(QThread):
                 self.img_work_queue.append((img_file, None))
                 continue
 
-            # Last two digits of file name indicate page number and are ignored
-            file_match = fnmatch.filter(self.excel_data.keys(), f'{img_file.stem[:-2]}??')
+            file_match = self.match_file_name(img_file.stem, self.excel_data.keys())
 
             if file_match:
                 file_match = file_match[0]
@@ -197,6 +205,24 @@ class ImgMetaDataWorker(QThread):
 
         self.num_items.emit(len(self.img_work_queue))
         self.work()
+
+    def match_file_name(self, name, excel_keys):
+        # Create search pattern for ignored name parts
+        pattern = ''
+        for pattern_part in self.ignored_name_patterns:
+            pattern += f'{pattern_part}|'
+
+        # Remove Name parts to ignore eg. _RECTO
+        file_name = re.sub(pattern, '', name)
+
+        if self.ignore_last_digits:
+            # Last two digits of file name indicate page number and are ignored
+            file_name = re.sub(r'\d\d$', '', file_name)
+
+        # Match name against excel row entries
+        file_match = fnmatch.filter(excel_keys, f'{file_name}*')
+
+        return file_match
 
     def work(self):
         if not len(self.img_work_queue):

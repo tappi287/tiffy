@@ -8,7 +8,7 @@ from modules.log import init_logging, setup_log_queue_listener
 from modules.settings import TiffySettings
 from modules.gui.main_app import MainApp
 
-VERSION = '0.70'
+VERSION = '0.75'
 
 # Prepare exception handling
 sys.excepthook = GuiExceptionHook.exception_hook
