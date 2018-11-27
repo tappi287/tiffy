@@ -55,27 +55,25 @@ class SettingsPage(QObject):
 
         # Dpi Settings
         self.ui.dpiBox.toggled.connect(self.enable_dpi_setting)
-        self.ui.dpiComboBox.currentIndexChanged.connect(self.update_dpi_unit)
         self.ui.dpiSpinBox.valueChanged.connect(self.update_dpi_resolution)
+        self.ui.dpiComboBox.currentIndexChanged.connect(self.update_dpi_unit)
 
-    @staticmethod
-    def enable_dpi_setting(enabled: bool):
-        LOGGER.debug('Updated dpi setting, update dpi: %s', enabled)
-        ImgMetaDataApp.update_dpi = enabled
+        # File Name Pattern Settings
+        self.ui.ignoreInput.editingFinished.connect(self.set_ignore_pattern)
+        self.ui.ignoreNum.toggled.connect(self.set_ignore_last_digits)
 
-    def update_dpi_resolution(self, value):
-        LOGGER.debug(f'Updated dpi setting, unit: {value:.2f}')
-        ImgMetaDataApp.dpi_res_x = f'{value:.2f}'
-        ImgMetaDataApp.dpi_res_y = f'{value:.2f}'
+    # ---- Filename - Excel association ----
+    def set_ignore_pattern(self):
+        value = self.ui.ignoreInput.text()
+        pattern = value.split(';')
+        LOGGER.debug('Setting file name ignore pattern: %s', pattern)
+        ImgMetaDataApp.ignored_name_patterns = pattern
 
-    def update_dpi_unit(self, index):
-        if index == 0:
-            ImgMetaDataApp.dpi_unit = '2'  # Inches
-            LOGGER.debug('Updated dpi setting, unit: Inches')
-        elif index == 1:
-            ImgMetaDataApp.dpi_unit = '3'  # Centimeter
-            LOGGER.debug('Updated dpi setting, unit: Centimeter')
+    def set_ignore_last_digits(self, enabled):
+        LOGGER.debug('Setting Ignore last digits in file name: %s', enabled)
+        ImgMetaDataApp.ignore_last_digits = enabled
 
+    # ---- Excel associations ----
     def update_column_field(self, input_field, input_box, idx: int):
         column = input_field.text().upper()
         input_field.setText(column)
@@ -118,6 +116,25 @@ class SettingsPage(QObject):
     def update_thread_count(self):
         Exif.max_threads = self.ui.threadCountSlider.value()
 
+    # ---- DPI Settings ----
+    @staticmethod
+    def enable_dpi_setting(enabled: bool):
+        LOGGER.debug('Updated dpi setting, update dpi: %s', enabled)
+        ImgMetaDataApp.update_dpi = enabled
+
+    def update_dpi_resolution(self, value):
+        LOGGER.debug(f'Updated dpi setting, unit: {value:.2f}')
+        ImgMetaDataApp.dpi_res_x = f'{value:.2f}'
+        ImgMetaDataApp.dpi_res_y = f'{value:.2f}'
+
+    def update_dpi_unit(self, index):
+        if index == 0:
+            ImgMetaDataApp.dpi_unit = '2'  # Inches
+            LOGGER.debug('Updated dpi setting, unit: Inches')
+        elif index == 1:
+            ImgMetaDataApp.dpi_unit = '3'  # Centimeter
+            LOGGER.debug('Updated dpi setting, unit: Centimeter')
+
     def restore_defaults(self):
         for idx, (input_field, box) in enumerate(zip(self.inputs, self.boxes)):
             column = self.default_columns[idx]
@@ -126,6 +143,13 @@ class SettingsPage(QObject):
                 input_field.setText(column)
             else:
                 box.setValue(0)
+
+        self.ui.ignoreInput.setText('_VERSO?$;_RECTO?$')
+        self.ui.ignoreNum.setChecked(True)
+
+        self.ui.dpiBox.setChecked(False)
+        self.ui.dpiComboBox.setCurrentIndex(0)
+        self.ui.dpiSpinBox.setValue(300.0)
 
     def translations(self):
         titles = _('Dateiname;Titel;Author;Beschreibung;Stichwörter;Copyright').split(';')
@@ -147,6 +171,7 @@ class SettingsPage(QObject):
 
             field.setText(desc[idx])
 
+        # Excel settings
         self.ui.groupBox.setTitle(_('Excel Tabellenzuordnungen'))
         self.ui.excelDesc.setText(_('Legt fest welche Spalte der Tabelle für die '
                                     'entsprechenden Metadaten verwendet wird. Leere Felder und Spalten mit Nummer 0 '
@@ -155,3 +180,23 @@ class SettingsPage(QObject):
         self.ui.appSettingDesc.setText(_('Erweiterte Anwendungseinstellungen. Unerfahrenen Benutzern '
                                          'wird empfohlen diese Einstellungen nicht zu ändern.'))
         self.ui.restoreBtn.setText(_('Standard wiederherstellen'))
+
+        # DPI Tag Settings
+        self.ui.dpiBox.setTitle(_('Auflösungs Meta Daten verändern'))
+        self.ui.dpiLabel.setText(_('Auflösung pro Einheit'))
+
+        for i, v in enumerate([_('DPI - Pixel pro Zoll'), _('PPCM - Pixel pro Centimeter')]):
+            self.ui.dpiComboBox.setCurrentIndex(i)
+            self.ui.dpiComboBox.setCurrentText(v)
+        self.ui.dpiComboBox.setCurrentIndex(0)
+
+        self.ui.dpiDesc.setText(_('Beschreibt die physikalische Bildgröße in angegebener Anzahl Pixel pro Einheit'))
+
+        # Filename - Excel association
+        self.ui.nameBox.setTitle(_('Dateinamen Zeilenzuordnung'))
+        self.ui.ignoreLabel.setText(_('Ignoriert:'))
+        self.ui.ignoreDesc.setText(_('RegEx für zu ignorienrende Teile des Dateinamens mit Semikolon ; getrennt. '
+                                     'zB. <i>Name01_VERSO</i> entspricht Zeile <i>Name01</i>'))
+        self.ui.ignoreNumDesc.setText(_('Ignoriert Zahlen am Namensende. zB. <i>Name08</i> '
+                                        'entspricht Zeile <i>Name01</i>'))
+        self.ui.ignoreNum.setText(_('Letzte 2 Stellen ignorieren'))

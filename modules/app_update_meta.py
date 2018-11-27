@@ -244,8 +244,8 @@ class ImgMetaDataWorker(QThread):
                     continue
                 command.append(f'{tag}={dict_value}')
 
-        # Do not back up files
         # command.append('-v3')
+        # Do not back up files
         command.append('-overwrite_original')
         command.append(f'{img_file.as_posix()}')
 
