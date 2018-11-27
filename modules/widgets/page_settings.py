@@ -2,6 +2,8 @@ from PyQt5.QtCore import QObject, QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
 
 from openpyxl.utils import column_index_from_string, get_column_letter
+
+from modules.app_update_meta import ImgMetaDataApp
 from modules.exif_worker import Exif
 from modules.detect_language import get_translation
 from modules.gui.gui_utils import ConnectCall
@@ -50,6 +52,29 @@ class SettingsPage(QObject):
             box.valueChanged.connect(box_call.call)
 
         self.ui.restoreBtn.released.connect(self.restore_defaults)
+
+        # Dpi Settings
+        self.ui.dpiBox.toggled.connect(self.enable_dpi_setting)
+        self.ui.dpiComboBox.currentIndexChanged.connect(self.update_dpi_unit)
+        self.ui.dpiSpinBox.valueChanged.connect(self.update_dpi_resolution)
+
+    @staticmethod
+    def enable_dpi_setting(enabled: bool):
+        LOGGER.debug('Updated dpi setting, update dpi: %s', enabled)
+        ImgMetaDataApp.update_dpi = enabled
+
+    def update_dpi_resolution(self, value):
+        LOGGER.debug(f'Updated dpi setting, unit: {value:.2f}')
+        ImgMetaDataApp.dpi_res_x = f'{value:.2f}'
+        ImgMetaDataApp.dpi_res_y = f'{value:.2f}'
+
+    def update_dpi_unit(self, index):
+        if index == 0:
+            ImgMetaDataApp.dpi_unit = '2'  # Inches
+            LOGGER.debug('Updated dpi setting, unit: Inches')
+        elif index == 1:
+            ImgMetaDataApp.dpi_unit = '3'  # Centimeter
+            LOGGER.debug('Updated dpi setting, unit: Centimeter')
 
     def update_column_field(self, input_field, input_box, idx: int):
         column = input_field.text().upper()

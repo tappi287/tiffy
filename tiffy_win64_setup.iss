@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Tiffy"
-#define MyAppVersion "0.65"
+#define MyAppVersion "0.75"
 #define MyAppPublisher "Stefan Tapper"
 #define MyAppURL "https://github.com/tappi287/tiffy"
 #define MyAppExeName "tiffy.exe"
