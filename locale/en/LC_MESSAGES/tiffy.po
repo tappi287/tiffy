@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-11-23 10:46+0100\n"
-"PO-Revision-Date: 2018-11-23 10:59+0100\n"
+"POT-Creation-Date: 2018-11-27 22:05+0100\n"
+"PO-Revision-Date: 2018-11-27 22:10+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=cp1252\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -134,7 +134,7 @@ msgstr "About Qt"
 
 #: modules/widgets\menu_info.py:35
 msgid "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Besuche den <a href=\"https://github.com/tappi287/tiffy\">Quelltext@github</a> dieser Software!<br><br>Tiffy ist <b>Freie Software</b>: Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation, Version 3 der Lizenz oder (nach Ihrer Wahl) jeder neueren veröffentlichten Version, weiter verteilen und/oder modifizieren.<br><br>Dieses Programm wird in der Hoffnung bereitgestellt, dass es nützlich sein wird, jedoch OHNE JEDE GEWÄHR,; sogar ohne die implizite Gewähr der MARKTFÄHIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Siehe die GNU General Public License für weitere Einzelheiten.<br><br>Sie sollten eine Kopie der GNU General Public License zusammen mit diesem Programm erhalten haben. Wenn nicht, siehe <a href=\"http://www.gnu.org/licenses/\">hier</a>."
-msgstr "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Visit the <a href=\"https://github.com/tappi287/tiffy\">source code@github</a> of this software!<br><br>Tiffy is <b>free Software</b>: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with Tiffy. If not, see <a href=\"http://www.gnu.org/licenses/\">here</a>."
+msgstr "<b>{0} licensed under GPL v3</b><br><i>Copyright © 2018 Stefan Tapper</i><br><br>Visit the <a href=\\https://github.com/tappi287/tiffy\\>source code@github</a> of this software!<br><br>Tiffy is <b>free Software</b>: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.<br><br>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.<br><br>You should have received a copy of the GNU General Public License along with Tiffy. If not, see <a href=\\http://www.gnu.org/licenses/\\>here</a>."
 
 #: modules/widgets\menu_language.py:19
 msgid "Sprache"
@@ -148,33 +148,85 @@ msgstr "Open Xml file ..."
 msgid "Das gewaehlte Dokument konnte nicht geladen werden.<br><br>Es enthaelt entweder Keine oder keine unterstuetzten Daten."
 msgstr "The choosen document could not be loaded.<br><br>It contains unsupported or no data at all."
 
-#: modules/widgets\page_settings.py:106
+#: modules/widgets\message_box.py:44
+msgid "Frage"
+msgstr "Question"
+
+#: modules/widgets\message_box.py:46
+msgid "OK"
+msgstr "OK"
+
+#: modules/widgets\message_box.py:47 modules\app_update_meta.py:125
+msgid "Abbrechen"
+msgstr "Abort"
+
+#: modules/widgets\page_settings.py:155
 msgid "Dateiname;Titel;Author;Beschreibung;Stichwörter;Copyright"
 msgstr "File Name;Title;Author;Description;Keywords;Copyright"
 
-#: modules/widgets\page_settings.py:107
+#: modules/widgets\page_settings.py:156
 msgid "<b>Diese Spalte MUSS befüllt sein.</b> Leere Zeilen werden übersprungen. Enthält den Dateinamen ohne Dateierweiterung.;Enthält den korrespondierenden Titel;Enthält den korrespondierenden Author;Enthält die korrespondierende Beschreibung;Enthält die korrespondierenden Stichwörter;Enthält den korrespondierenden Rechtshinweis"
 msgstr "<b>Column MUST be filled. </b> Empty lines are skipped. Contains the file name without file extension.;contains the corresponding title;contains the corresponding author;contains the corresponding description;contains the corresponding keywords;contains the corresponding legal advice"
 
-#: modules/widgets\page_settings.py:125
+#: modules/widgets\page_settings.py:175
 msgid "Excel Tabellenzuordnungen"
 msgstr "Excel Column Assignments"
 
-#: modules/widgets\page_settings.py:126
+#: modules/widgets\page_settings.py:176
 msgid "Legt fest welche Spalte der Tabelle für die entsprechenden Metadaten verwendet wird. Leere Felder und Spalten mit Nummer 0 werden nicht berücksichtigt."
 msgstr "Assigns the selected columns with the corresponding meta data. Empty fields and column with number 0 are ignored."
 
-#: modules/widgets\page_settings.py:129
+#: modules/widgets\page_settings.py:179
 msgid "Anwendung"
 msgstr "Application"
 
-#: modules/widgets\page_settings.py:130
+#: modules/widgets\page_settings.py:180
 msgid "Erweiterte Anwendungseinstellungen. Unerfahrenen Benutzern wird empfohlen diese Einstellungen nicht zu ändern."
 msgstr "Advanced application settings. Inexperienced users are adviced not to change these settings."
 
-#: modules/widgets\page_settings.py:132
+#: modules/widgets\page_settings.py:182
 msgid "Standard wiederherstellen"
 msgstr "Restore defaults"
+
+#: modules/widgets\page_settings.py:185
+msgid "Auflösungs Meta Daten verändern"
+msgstr "Resolution Meta Data"
+
+#: modules/widgets\page_settings.py:186
+msgid "Auflösung pro Einheit"
+msgstr "Resolution per unit"
+
+#: modules/widgets\page_settings.py:188
+msgid "DPI - Pixel pro Zoll"
+msgstr "DPI - Dots per Inch"
+
+#: modules/widgets\page_settings.py:188
+msgid "PPCM - Pixel pro Centimeter"
+msgstr "PPCM - Pixel per Centimeter"
+
+#: modules/widgets\page_settings.py:193
+msgid "Beschreibt die physikalische Bildgröße in angegebener Anzahl Pixel pro Einheit"
+msgstr "Describes the physical image size in specified number pixels per unit"
+
+#: modules/widgets\page_settings.py:196
+msgid "Dateinamen Zeilenzuordnung"
+msgstr "File Name spreadsheet mapping"
+
+#: modules/widgets\page_settings.py:197
+msgid "Ignoriert:"
+msgstr "Ignored:"
+
+#: modules/widgets\page_settings.py:198
+msgid "RegEx für zu ignorienrende Teile des Dateinamens mit Semikolon ; getrennt. zB. <i>Name01_VERSO</i> entspricht Zeile <i>Name01</i>"
+msgstr "RegEx for parts of the file Name to ignore. Separated with semicolon ; eg. <i> Name01_VERSO </i> corresponds to line <i> Name01 </i>"
+
+#: modules/widgets\page_settings.py:200
+msgid "Ignoriert Zahlen am Namensende. zB. <i>Name08</i> entspricht Zeile <i>Name01</i>"
+msgstr "Ignores digits at the end of the name. For example, <i> Name08 </i> corresponds to line <i> Name01 </i>"
+
+#: modules/widgets\page_settings.py:202
+msgid "Letzte 2 Stellen ignorieren"
+msgstr "Ignore last 2 digits"
 
 #: modules\app_read_excel.py:65
 msgid "[Keine Daten]"
@@ -184,22 +236,34 @@ msgstr "[No Data]"
 msgid "Excel Tabelle in {0:.3}s geladen."
 msgstr "Excel Spreadsheet loaded in {0:.3}s"
 
-#: modules\app_update_meta.py:64
+#: modules\app_update_meta.py:62
+msgid "Kein Pfad zu Bilddaten angegeben."
+msgstr "No path to image files given."
+
+#: modules\app_update_meta.py:72
+msgid "Weder DPI noch Excel Daten zum aktualisieren ausgewählt.<br><br>Der Vorgang wird abgebrochen."
+msgstr "Neither DPI nor Excel data selected to update. <br> <br> The operation is canceled."
+
+#: modules\app_update_meta.py:84
+msgid "Der Tabelle fehlen Daten in der Spalte für die korrespondierenden Dateinamen.<br><br>Konnte keine Einträge mit gültigen Dateinamen finden. Überprüfe in den Einstellungen ob die Spalte für die Dateinamen korrekt eingestellt ist."
+msgstr "The table lacks data in the column for the corresponding file names.<br><br>Could not find entries with valid file names. Check the settings to see if the file name column is set correctly."
+
+#: modules\app_update_meta.py:115
 msgid "Bildprozessor"
 msgstr "Image processor"
 
 #: modules\app_update_meta.py:121
-msgid "Kein Pfad zu Bilddaten angegeben."
-msgstr "No path to image files given."
+msgid "Bilddaten aktualisieren"
+msgstr "Update image data"
 
-#: modules\app_update_meta.py:127
-msgid "Keine Excel Daten geladen."
-msgstr "No Excel data loaded."
+#: modules\app_update_meta.py:122
+msgid "Es wurden keine Exceldaten geladen. Es werden keine Metadaten aktualisiert!<br><br>Möchtest du trotzedem fortfahren?"
+msgstr "No Excel data was loaded. No metadata is updated! <br> <br> Do you want to continue anyway?"
 
-#: modules\app_update_meta.py:133
-msgid "Der Tabelle fehlen Daten in der Spalte für die korrespondierenden Dateinamen.<br><br>Konnte keine Einträge mit gültigen Dateinamen finden. Überprüfe in den Einstellungen ob die Spalte für die Dateinamen korrekt eingestellt ist."
-msgstr "The table lacks data in the column for the corresponding file names.<br><br>Could not find entries with valid file names. Check the settings to see if the file name column is set correctly."
+#: modules\app_update_meta.py:124
+msgid "Fortfahren"
+msgstr "Continue"
 
-#: modules\app_update_meta.py:187
+#: modules\app_update_meta.py:263
 msgid "ACHTUNG! Bilddatei -NICHT- in Excel gefunden!"
 msgstr "ATTENTION! Image file -not- found in Excel!"

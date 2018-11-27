@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>942</width>
+    <width>968</width>
     <height>718</height>
    </rect>
   </property>
@@ -175,8 +175,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>838</width>
-               <height>841</height>
+               <width>864</width>
+               <height>803</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -694,18 +694,18 @@
                      <widget class="QComboBox" name="dpiComboBox">
                       <property name="sizePolicy">
                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                        <horstretch>2</horstretch>
+                        <horstretch>5</horstretch>
                         <verstretch>0</verstretch>
                        </sizepolicy>
                       </property>
                       <item>
                        <property name="text">
-                        <string>DPI - Pixel pro Zoll</string>
+                        <string>DPI</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
-                        <string>PPCM - Pixel pro Centimeter</string>
+                        <string>PPCM</string>
                        </property>
                       </item>
                      </widget>
@@ -990,7 +990,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>942</width>
+     <width>968</width>
      <height>31</height>
     </rect>
    </property>

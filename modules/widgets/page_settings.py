@@ -1,3 +1,4 @@
+from PyQt5.QtWidgets import QComboBox
 from PyQt5.QtCore import QObject, QRegExp, Qt
 from PyQt5.QtGui import QRegExpValidator
 
@@ -186,9 +187,7 @@ class SettingsPage(QObject):
         self.ui.dpiLabel.setText(_('Auflösung pro Einheit'))
 
         for i, v in enumerate([_('DPI - Pixel pro Zoll'), _('PPCM - Pixel pro Centimeter')]):
-            self.ui.dpiComboBox.setCurrentIndex(i)
-            self.ui.dpiComboBox.setCurrentText(v)
-        self.ui.dpiComboBox.setCurrentIndex(0)
+            self.ui.dpiComboBox.setItemText(i, v)
 
         self.ui.dpiDesc.setText(_('Beschreibt die physikalische Bildgröße in angegebener Anzahl Pixel pro Einheit'))
 

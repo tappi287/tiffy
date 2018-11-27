@@ -159,7 +159,6 @@ class ImgMetaDataWorker(QThread):
         self.dpi_res_y = parent_app.dpi_res_y
 
         # Name settings
-        # TODO: integrate setting in gui
         self.ignored_name_patterns = parent_app.ignored_name_patterns
         self.ignore_last_digits = parent_app.ignore_last_digits
 
